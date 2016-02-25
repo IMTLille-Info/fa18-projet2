@@ -2,12 +2,12 @@ package fr.telecom.durifgame.player;
 
 public interface PlayerStates {
 	
-	public enum state {
+	public enum State {
 		STANDBY,
 		WALKING
 	}
 	
-	public enum direction {
+	public enum Direction {
 		LEFT,
 		RIGHT,
 		UP,
