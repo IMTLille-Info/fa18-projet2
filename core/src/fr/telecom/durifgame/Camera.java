@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class Camera {
 	
-	OrthographicCamera camera;
+	private OrthographicCamera camera;
 	
 	public Camera(){
 		
@@ -24,12 +24,12 @@ public class Camera {
 		this.camera.update();
 	}
 	
-	protected OrthographicCamera getCamera(){
+	public OrthographicCamera getCamera(){
 		return this.camera;
 	}
 	
 	protected void translate(int x, int y){
 		camera.translate(x,y);
 	}
-
+	
 }

@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fr.telecom.durifgame.player.Player;
+
 public class DurifGame extends ApplicationAdapter {
 	
 	SpriteBatch batch;
@@ -16,15 +18,17 @@ public class DurifGame extends ApplicationAdapter {
     private Camera cam;
     private KeyListener kListener;
     private BitmapFont font;
+    private Player player;
 
-	
 	@Override
 	public void create () {
 
 		cam = new Camera();
         map = new Map("exemple.tmx");
-        kListener = new KeyListener(cam, map);
+        player = new Player("soldier.png",cam);
+        kListener = new KeyListener(cam, map, player.getSprite());
         
+
 	}
 
 	@Override
@@ -35,6 +39,7 @@ public class DurifGame extends ApplicationAdapter {
         cam.update();
         map.setView(cam.getCamera());
         map.render();
+        player.displayPlayer();
 	}
 	
     

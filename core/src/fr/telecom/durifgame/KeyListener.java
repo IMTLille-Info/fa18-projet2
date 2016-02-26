@@ -3,16 +3,25 @@ package fr.telecom.durifgame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector3;
+
+
 
 public class KeyListener implements InputProcessor {
 	
 	private Camera cam;
 	private Map map;
+	private Sprite sprite;
 	
-	public KeyListener(Camera camera , Map map) {
+
+    
+    
+	public KeyListener(Camera camera , Map map ,Sprite sprite) {
 		Gdx.input.setInputProcessor(this);
 		this.cam = camera;
 		this.map = map;
+		this.sprite = sprite;
 
 	}
 
@@ -49,8 +58,11 @@ public class KeyListener implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
+		
+        Vector3 clickCoordinates = new Vector3(screenX,screenY,0);
+        Vector3 position = cam.getCamera().unproject(clickCoordinates);
+        sprite.setPosition(position.x, position.y);
+        return true;
 	}
 
 	@Override
