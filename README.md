@@ -1,5 +1,4 @@
 # ProjetJeuTL
 
-test bite
-
-test chate
+ENTER => lancer musique
+ESC => stop musique
