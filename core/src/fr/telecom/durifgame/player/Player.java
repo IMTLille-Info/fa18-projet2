@@ -1,12 +1,12 @@
 package fr.telecom.durifgame.player;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.telecom.durifgame.Camera;
 import fr.telecom.durifgame.Position;
-import fr.telecom.durifgame.*;
 
 public class Player implements PlayerStates{
 
@@ -14,32 +14,38 @@ public class Player implements PlayerStates{
 	private State state;
 	private Direction dir;
 	private PlayerAnimation animation;
-	private SpriteBatch sb;
-	private Texture texture;
 	private Sprite sprite;
 
-	private Camera cam;
+    TextureRegion[] walkFrames;             
+    
+    SpriteBatch spriteBatch;            
+    TextureRegion currentFrame;           
+    
+    float stateTime;
+    
+    Camera camera;
+    
 	
-	public Player(String path, Camera cam) {
-		
-		sb = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal(path));
-        sprite = new Sprite(texture);
-        
-        this.cam = cam;
-        
-		setPos(new Position(0, 0));
-		setState(State.STANDBY);
-		setDir(Direction.DOWN);
-		setAnimation(new PlayerAnimation(getState(), getDir()));
+	public Player(String path,Camera camera) {
+  
+    	this.camera = camera;
+    	
+        spriteBatch = new SpriteBatch();               
+        stateTime = 0f;                         
+
+        setPos(new Position(0, 0));
+        setState(State.STANDBY);
+        setDir(Direction.NO_DIR);
+        setAnimation(new PlayerAnimation(getState(), getDir(),path));
 	}
 
 	public void displayPlayer(){
-		
-        sb.setProjectionMatrix(cam.getCamera().combined);
-        sb.begin();
-        sprite.draw(sb);
-        sb.end();
+
+        stateTime += Gdx.graphics.getDeltaTime();           
+        currentFrame = animation.getAnimation(dir).getKeyFrame(stateTime, true);  
+        spriteBatch.begin();
+        spriteBatch.draw(currentFrame , camera.getWidth()/2 , camera.getHeight()/2);             
+        spriteBatch.end();
         
 	}
 	public PlayerAnimation getAnimation() {

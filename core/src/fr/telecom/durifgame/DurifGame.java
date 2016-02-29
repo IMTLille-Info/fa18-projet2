@@ -19,6 +19,11 @@ public class DurifGame extends ApplicationAdapter {
     private KeyListener kListener;
     private BitmapFont font;
     private Player player;
+    private Music music;
+    
+	public Music getMusic() {
+		return music;
+	}
 
 	@Override
 	public void create () {
@@ -26,9 +31,9 @@ public class DurifGame extends ApplicationAdapter {
 		cam = new Camera();
         map = new Map("exemple.tmx");
         player = new Player("soldier.png",cam);
-        kListener = new KeyListener(cam, map, player.getSprite());
+        music = new Music("lost-in-the-meadows.ogg");
+        kListener = new KeyListener(cam, map, player,music);
         
-
 	}
 
 	@Override
@@ -45,8 +50,14 @@ public class DurifGame extends ApplicationAdapter {
     
     @Override
     public void dispose() {
-        batch.dispose();
-        font.dispose();
-        map.dispose();
+    	if(batch != null)
+    		batch.dispose();
+    	if(font != null)
+    		font.dispose();
+    	if(map != null)
+    		map.dispose();
+    	if(music != null)
+    		music.dispose();
+    	
     }
 }

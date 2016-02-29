@@ -4,13 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class Camera {
-	
+	float h;
+	float w;
 	private OrthographicCamera camera;
 	
 	public Camera(){
 		
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
         
         camera = new OrthographicCamera();
         camera.setToOrtho(false,w,h);
@@ -30,6 +31,12 @@ public class Camera {
 	
 	protected void translate(int x, int y){
 		camera.translate(x,y);
+	}
+	public float getWidth(){
+		return w;
+	}
+	public float getHeight(){
+		return h;
 	}
 	
 }
