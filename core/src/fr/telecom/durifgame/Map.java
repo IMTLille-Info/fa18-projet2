@@ -12,23 +12,35 @@ public class Map {
 	private TiledMapRenderer tiledMapRenderer;
 	private TiledMap tiledMap;
 	
+	//----------------------------------------------//
+    //-Map											//
+    //-Constructeur									//
+    //----------------------------------------------//
 	public Map(String path) {
 		tiledMap = new TmxMapLoader().load(path);
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 	}
-	
+	//-----------------------------------------------//
+    //-setView										 //
+    //-----------------------------------------------//
     protected void setView(OrthographicCamera camera){
     	tiledMapRenderer.setView(camera);
     }
-    
+	//-----------------------------------------------//
+    //-render										 //
+    //-----------------------------------------------//
     protected void render(){
     	tiledMapRenderer.render();
     }
-    
+	//-----------------------------------------------//
+    //-dispose										 //
+    //-----------------------------------------------//
     protected void dispose(){
     	tiledMap.dispose();
     }
-    
+	//-----------------------------------------------//
+    //-getLayers									 //
+    //-----------------------------------------------//
     protected MapLayers getLayers(){
     	return tiledMap.getLayers();
     }

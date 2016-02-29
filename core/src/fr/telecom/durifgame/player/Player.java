@@ -16,16 +16,19 @@ public class Player implements PlayerStates{
 	private PlayerAnimation animation;
 	private Sprite sprite;
 
-    TextureRegion[] walkFrames;             
+    private TextureRegion[] walkFrames;             
     
-    SpriteBatch spriteBatch;            
-    TextureRegion currentFrame;           
+    private SpriteBatch spriteBatch;            
+    private TextureRegion currentFrame;           
     
-    float stateTime;
+    private float stateTime;
     
-    Camera camera;
+    private Camera camera;
     
-	
+	//----------------------------------------------//
+    //-Player										//
+    //-Constructeur									//
+    //----------------------------------------------//
 	public Player(String path,Camera camera) {
   
     	this.camera = camera;
@@ -39,6 +42,9 @@ public class Player implements PlayerStates{
         setAnimation(new PlayerAnimation(getState(), getDir(),path));
 	}
 
+	//-----------------------------------------------//
+    //-displayPlayer								 //
+    //-----------------------------------------------//
 	public void displayPlayer(){
 
         stateTime += Gdx.graphics.getDeltaTime();           
@@ -48,38 +54,58 @@ public class Player implements PlayerStates{
         spriteBatch.end();
         
 	}
+	//----------------------------------------------//
+    //-getAnimation								 	//
+    //----------------------------------------------//
 	public PlayerAnimation getAnimation() {
 		return animation;
 	}
-
+	
+	//----------------------------------------------//
+    //-setAnimation								 	//
+    //----------------------------------------------//
 	public void setAnimation(PlayerAnimation animation) {
 		this.animation = animation;
 	}
-	
+	//----------------------------------------------//
+    //-getPos								 		//
+    //----------------------------------------------//
 	public Position getPos() {
 		return pos;
 	}
-
+	//----------------------------------------------//
+    //-setPos								 		//
+    //----------------------------------------------//
 	public void setPos(Position pos) {
 		this.pos = pos;
 	}
-
+	//----------------------------------------------//
+    //-getState								 		//
+    //----------------------------------------------//
 	public State getState() {
 		return state;
 	}
-
+	//----------------------------------------------//
+    //-setState								 		//
+    //----------------------------------------------//
 	public void setState(State state) {
 		this.state = state;
 	}
-
+	//----------------------------------------------//
+    //-getDir									 	//
+    //----------------------------------------------//
 	public Direction getDir() {
 		return dir;
 	}
-
+	//----------------------------------------------//
+    //-setDir								 		//
+    //----------------------------------------------//
 	public void setDir(Direction dir) {
 		this.dir = dir;
 	}
-	
+	//----------------------------------------------//
+    //-getSprite								 	//
+    //----------------------------------------------//
 	public Sprite getSprite() {
 		return sprite;
 	}

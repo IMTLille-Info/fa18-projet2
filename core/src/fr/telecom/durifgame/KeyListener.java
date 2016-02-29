@@ -14,7 +14,10 @@ public class KeyListener implements InputProcessor {
 	private Player player;
 	private Music music;
 	
-
+	//----------------------------------------------//
+    //-KeyListener									//
+    //-Constructeur									//
+    //----------------------------------------------//
 	public KeyListener(Camera camera , Map map ,Player player, Music music) {
 		Gdx.input.setInputProcessor(this);
 		this.cam = camera;
@@ -23,7 +26,9 @@ public class KeyListener implements InputProcessor {
 		this.music = music;
 
 	}
-
+	//-----------------------------------------------//
+    //-keyDown										 //
+    //-----------------------------------------------//
 	@Override
 	public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.LEFT){
@@ -62,6 +67,9 @@ public class KeyListener implements InputProcessor {
 		return false;
 	}
 
+	//-----------------------------------------------//
+    //-keyUp										 //
+    //-----------------------------------------------//
 	@Override
 	public boolean keyUp(int keycode) {
 		player.setDir(Direction.NO_DIR);
@@ -69,36 +77,49 @@ public class KeyListener implements InputProcessor {
         return false;
 	}
 
+	//-----------------------------------------------//
+    //-keyTyped										 //
+    //-----------------------------------------------//
 	@Override
 	public boolean keyTyped(char character) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//-----------------------------------------------//
+    //-touchDown									 //
+    //-----------------------------------------------//
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
         return true;
 	}
-
+	//-----------------------------------------------//
+    //-touchUp										 //
+    //-----------------------------------------------//
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//-----------------------------------------------//
+    //-touchDragged									 //
+    //-----------------------------------------------//
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//-----------------------------------------------//
+    //-mouseMoved									 //
+    //-----------------------------------------------//
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	//-----------------------------------------------//
+    //-scrolled										 //
+    //-----------------------------------------------//
 	@Override
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub

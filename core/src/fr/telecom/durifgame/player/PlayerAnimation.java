@@ -7,25 +7,27 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class PlayerAnimation implements PlayerStates {
 	
-	TextureRegion[]	walkUpAnim;
-    TextureRegion[]	walkDownAnim;
-    TextureRegion[] walkLeftAnim;
-    TextureRegion[] walkRightAnim;
-    TextureRegion[] standByAnim;
+	private TextureRegion[]	walkUpAnim;
+	private TextureRegion[]	walkDownAnim;
+	private TextureRegion[] walkLeftAnim;
+	private TextureRegion[] walkRightAnim;
+	private TextureRegion[] standByAnim;
     
-    Animation walkUp;
-    Animation walkDown;
-    Animation walkLeft;
-    Animation walkRight;
-    Animation standBy;
+	private Animation walkUp;
+	private Animation walkDown;
+	private Animation walkLeft;
+	private Animation walkRight;
+	private Animation standBy;
 
-    private static final int        FRAME_COLS = 9;
-    private static final int        FRAME_ROWS = 4; 
+    private static final int FRAME_COLS = 9;
+    private static final int FRAME_ROWS = 4; 
     
-    Animation walkAnimation;
+    private Texture walkSheet;
     
-    Texture walkSheet;
-    
+	//----------------------------------------------//
+    //-PlayerAnimation								//
+    //-Constructeur									//
+    //----------------------------------------------//
 	public PlayerAnimation(State state, Direction direction,String path) {
 		
 		walkSheet = new Texture(Gdx.files.internal(path));
@@ -38,23 +40,12 @@ public class PlayerAnimation implements PlayerStates {
         walkLeftAnim = new TextureRegion[FRAME_COLS];
         standByAnim = new TextureRegion[1];
         
-        standByAnim[0]=tmp[0][0];
-
-        for(int i=0;i<FRAME_COLS;i++){
-        	walkUpAnim[i]=tmp[0][i];
-        	walkDownAnim[i]=tmp[2][i];
-        	walkLeftAnim[i]=tmp[1][i];
-        	walkRightAnim[i]=tmp[3][i];
-        }
-        
-        walkUp = new Animation(0.06f, walkUpAnim);
-        walkDown = new Animation(0.06f, walkDownAnim); 
-        walkRight = new Animation(0.06f, walkRightAnim); 
-        walkLeft = new Animation(0.06f, walkLeftAnim); 
-        standBy = new Animation(0.06f, standByAnim); 
-        
-       	
+        setAnimation(tmp);
 	}
+	
+	//-----------------------------------------------//
+    //-Animation									 //
+    //-----------------------------------------------//
 	public Animation getAnimation(Direction dir){
 		
 		switch (dir) {
@@ -72,8 +63,26 @@ public class PlayerAnimation implements PlayerStates {
 			break;
 
 		}
-		System.out.println("BUG");
 		return null;
 	}
 	
+	//-----------------------------------------------//
+    //-setAnimation									 //
+    //-----------------------------------------------//
+	private void setAnimation(TextureRegion[][] tmp){
+		standByAnim[0]=tmp[0][0];
+
+        for(int i=0;i<FRAME_COLS;i++){
+        	walkUpAnim[i]=tmp[0][i];
+        	walkDownAnim[i]=tmp[2][i];
+        	walkLeftAnim[i]=tmp[1][i];
+        	walkRightAnim[i]=tmp[3][i];
+        }
+        
+        walkUp = new Animation(0.06f, walkUpAnim);
+        walkDown = new Animation(0.06f, walkDownAnim); 
+        walkRight = new Animation(0.06f, walkRightAnim); 
+        walkLeft = new Animation(0.06f, walkLeftAnim); 
+        standBy = new Animation(0.06f, standByAnim); 	
+	}	
 }
