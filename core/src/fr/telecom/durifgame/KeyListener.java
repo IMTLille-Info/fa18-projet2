@@ -129,26 +129,26 @@ public class KeyListener implements InputProcessor {
 	public void keyPressed(){
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
         	player.getPos().setPosX(player.getPos().getPosX()-Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(-32,0);
+        	cam.translate(-1,0);
          	player.setDir(Direction.LEFT);
          	player.setState(State.WALKING);
         	 }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         	player.getPos().setPosX(player.getPos().getPosX()+Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(32,0);
+        	cam.translate(1,0);
          	player.setDir(Direction.RIGHT);
          	player.setState(State.WALKING);
         	 }
-        if(Gdx.input.isKeyPressed(Keys.UP)) {
+        else if(Gdx.input.isKeyPressed(Keys.UP)) {
 
         	player.getPos().setPosY(player.getPos().getPosY()-Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(0,32);
+        	cam.translate(0,1);
          	player.setDir(Direction.UP);
          	player.setState(State.WALKING);
         	 }
-        if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+        else if(Gdx.input.isKeyPressed(Keys.DOWN)) {
         	player.getPos().setPosY(player.getPos().getPosY()-Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(0,-32);
+        	cam.translate(0,-1);
          	player.setDir(Direction.DOWN);
          	player.setState(State.WALKING);
         	 }
