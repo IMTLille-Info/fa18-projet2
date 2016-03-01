@@ -8,6 +8,9 @@ import fr.telecom.durifgame.player.Player;
 
 public class DurifGame extends ApplicationAdapter {
 	
+	private final static boolean DBG = true;
+	private final static String TAG = DurifGame.class.getSimpleName();
+	
 	private Map map ;
     private Camera cam;
     private KeyListener kListener;

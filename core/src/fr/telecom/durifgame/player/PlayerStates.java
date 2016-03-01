@@ -4,7 +4,8 @@ public interface PlayerStates {
 	
 	public enum State {
 		STANDBY,
-		WALKING
+		WALKING,
+		RUNNING
 	}
 	
 	public enum Direction {

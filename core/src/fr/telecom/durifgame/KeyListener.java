@@ -10,6 +10,9 @@ import fr.telecom.durifgame.player.PlayerStates.*;
 
 public class KeyListener implements InputProcessor {
 	
+	private final static boolean DBG = true;
+	private final static String TAG = KeyListener.class.getSimpleName();
+	
 	private Camera cam;
 	private Map map;
 	private Player player;
@@ -33,7 +36,15 @@ public class KeyListener implements InputProcessor {
     //-----------------------------------------------//
 	@Override
 	public boolean keyDown(int keycode) {
-            
+		
+		if(keycode == Input.Keys.R){
+			player.setState(State.RUNNING);
+			System.out.println("running");
+		}
+		if(keycode == Input.Keys.W){
+			player.setState(State.WALKING);
+			System.out.println("walking");
+		}
         if(keycode == Input.Keys.NUM_1)
             map.getLayers().get(0).setVisible(!map.getLayers().get(0).isVisible());
         if(keycode == Input.Keys.NUM_2)
@@ -53,7 +64,8 @@ public class KeyListener implements InputProcessor {
     //-----------------------------------------------//
 	@Override
 	public boolean keyUp(int keycode) {
-		if(player.getState()==State.WALKING){
+	
+			Log.logd(DBG, TAG, "keyUp");
 			if(player.getDir()==Direction.DOWN){		
 				player.setDir(Direction.NO_DIR_DOWN);
 				player.setState(State.STANDBY);
@@ -70,7 +82,6 @@ public class KeyListener implements InputProcessor {
 				player.setDir(Direction.NO_DIR_LEFT);
 				player.setState(State.STANDBY);	
 			}
-		}		
         return false;
 	}
 
@@ -127,30 +138,34 @@ public class KeyListener implements InputProcessor {
     //-scrolled										 //
     //-----------------------------------------------//
 	public void keyPressed(){
+		
+		final int speed = player.getSpeed();
+		//Log.logd(DBG, TAG, "speed = "+speed);
+		
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
         	player.getPos().setPosX(player.getPos().getPosX()-Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(-1,0);
+        	cam.translate(-speed,0);
          	player.setDir(Direction.LEFT);
-         	player.setState(State.WALKING);
+         	//player.setState(State.WALKING);
         	 }
         else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         	player.getPos().setPosX(player.getPos().getPosX()+Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(1,0);
+        	cam.translate(speed,0);
          	player.setDir(Direction.RIGHT);
-         	player.setState(State.WALKING);
+         	//player.setState(State.WALKING);
         	 }
         else if(Gdx.input.isKeyPressed(Keys.UP)) {
 
         	player.getPos().setPosY(player.getPos().getPosY()-Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(0,1);
+        	cam.translate(0,speed);
          	player.setDir(Direction.UP);
-         	player.setState(State.WALKING);
+         	//player.setState(State.WALKING);
         	 }
         else if(Gdx.input.isKeyPressed(Keys.DOWN)) {
         	player.getPos().setPosY(player.getPos().getPosY()-Gdx.graphics.getDeltaTime()*(float)0);
-        	cam.translate(0,-1);
+        	cam.translate(0,-speed);
          	player.setDir(Direction.DOWN);
-         	player.setState(State.WALKING);
+         	//player.setState(State.WALKING);
         	 }
 	}
 	

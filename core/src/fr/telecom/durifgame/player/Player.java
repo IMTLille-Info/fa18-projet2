@@ -6,9 +6,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fr.telecom.durifgame.Camera;
+import fr.telecom.durifgame.Log;
 import fr.telecom.durifgame.Position;
 
 public class Player implements PlayerStates{
+	
+	private final static boolean DBG = true;
+	private final static String TAG = Player.class.getSimpleName();
+
 
 	private Position pos;
 	private State state;
@@ -24,6 +29,15 @@ public class Player implements PlayerStates{
     
     private Camera camera;
     
+    private int speed;
+    public int getSpeed() {
+		return speed;
+	}
+
+	private static final int RUN = 10;
+    private static final int WALK = 1;
+    
+    
 	//----------------------------------------------//
     //-Player										//
     //-Constructeur									//
@@ -34,7 +48,10 @@ public class Player implements PlayerStates{
     	
         spriteBatch = new SpriteBatch();               
         stateTime = 0f;                         
-
+        speed = WALK;
+        
+        Log.logd(DBG, TAG, "test speed ="+speed);
+        
         setPos(new Position(0, 0));
         setState(State.STANDBY);
         setDir(Direction.NO_DIR_RIGHT);
@@ -89,6 +106,7 @@ public class Player implements PlayerStates{
     //----------------------------------------------//
 	public void setState(State state) {
 		this.state = state;
+		setSpeed();
 	}
 	//----------------------------------------------//
     //-getDir									 	//
@@ -108,5 +126,17 @@ public class Player implements PlayerStates{
 	public Sprite getSprite() {
 		return sprite;
 	}
-
+	
+	//----------------------------------------------//
+    //-setSpeed									 	//
+    //----------------------------------------------//
+	protected void setSpeed(){
+		
+		Log.logd(DBG, TAG, "setspeed");
+		if(state == State.RUNNING)
+			speed = RUN;
+		if(state  == State.WALKING)
+			speed = WALK;
+		
+	}
 }

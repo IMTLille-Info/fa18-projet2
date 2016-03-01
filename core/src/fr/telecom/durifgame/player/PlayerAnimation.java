@@ -5,7 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+
 public class PlayerAnimation implements PlayerStates {
+	
+	private final static boolean DBG = true;
+	private final static String TAG = PlayerAnimation.class.getSimpleName();
 	
 	private TextureRegion[]	walkUpAnim;
 	private TextureRegion[]	walkDownAnim;
