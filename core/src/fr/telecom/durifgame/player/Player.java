@@ -30,12 +30,8 @@ public class Player implements PlayerStates{
     private Camera camera;
     
     private int speed;
-    public int getSpeed() {
-		return speed;
-	}
-
-	private static final int RUN = 10;
-    private static final int WALK = 1;
+	public static final int RUN = 5;
+    public static final int WALK = 1;
     
     
 	//----------------------------------------------//
@@ -48,14 +44,11 @@ public class Player implements PlayerStates{
     	
         spriteBatch = new SpriteBatch();               
         stateTime = 0f;                         
+        setPos(new Position(100, 100));
+        state = State.STANDBY;
         speed = WALK;
-        
-        Log.logd(DBG, TAG, "test speed ="+speed);
-        
-        setPos(new Position(0, 0));
-        setState(State.STANDBY);
-        setDir(Direction.NO_DIR_RIGHT);
-        setAnimation(new PlayerAnimation(getState(), getDir(),path));
+        dir = Direction.NO_DIR_RIGHT;
+        animation = new PlayerAnimation(state, dir,path);
 	}
 
 	//-----------------------------------------------//
@@ -63,8 +56,13 @@ public class Player implements PlayerStates{
     //-----------------------------------------------//
 	public void displayPlayer(){
 
-        stateTime += Gdx.graphics.getDeltaTime();           
-        currentFrame = animation.getAnimation(dir).getKeyFrame(stateTime, true);  
+        stateTime += Gdx.graphics.getDeltaTime();
+        try{
+        	currentFrame = animation.getAnimation(dir,state).getKeyFrame(stateTime, true);  	
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
+        
         spriteBatch.begin();
         spriteBatch.draw(currentFrame , camera.getWidth()/2 , camera.getHeight()/2);             
         spriteBatch.end();
@@ -105,8 +103,8 @@ public class Player implements PlayerStates{
     //-setState								 		//
     //----------------------------------------------//
 	public void setState(State state) {
+		//Log.logd(DBG, TAG, "setState = "+state.name());
 		this.state = state;
-		setSpeed();
 	}
 	//----------------------------------------------//
     //-getDir									 	//
@@ -130,13 +128,14 @@ public class Player implements PlayerStates{
 	//----------------------------------------------//
     //-setSpeed									 	//
     //----------------------------------------------//
-	protected void setSpeed(){
-		
-		Log.logd(DBG, TAG, "setspeed");
-		if(state == State.RUNNING)
-			speed = RUN;
-		if(state  == State.WALKING)
-			speed = WALK;
-		
+	public void setSpeed(int speed){
+		Log.logd(DBG, TAG, "setSpeed = "+speed);
+		this.speed=speed;	
+	}
+	//----------------------------------------------//
+    //-setSpeed									 	//
+    //----------------------------------------------//
+    public int getSpeed() {
+		return speed;
 	}
 }

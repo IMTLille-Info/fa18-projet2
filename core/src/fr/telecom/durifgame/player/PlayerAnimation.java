@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.telecom.durifgame.Log;
+
 
 public class PlayerAnimation implements PlayerStates {
 	
@@ -30,8 +32,12 @@ public class PlayerAnimation implements PlayerStates {
 	private Animation standByLeft;
 	private Animation standByRight;
 
-    private static final int FRAME_COLS = 9;
-    private static final int FRAME_ROWS = 4; 
+    private static final int COL = 9;
+    private static final int ROWS = 4; 
+    
+    private static final float FRAME_RUN = (float) 0.03;
+    private static final float FRAME_WALK = (float) 0.06;
+    
     
     private Texture walkSheet;
     
@@ -43,7 +49,7 @@ public class PlayerAnimation implements PlayerStates {
 		
 		walkSheet = new Texture(Gdx.files.internal(path));
 		
-		TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/FRAME_COLS, walkSheet.getHeight()/FRAME_ROWS);
+		TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/COL, walkSheet.getHeight()/ROWS);
 		
 		setAnimationArray();
         setAnimation(tmp);
@@ -52,29 +58,60 @@ public class PlayerAnimation implements PlayerStates {
 	//-----------------------------------------------//
     //-Animation									 //
     //-----------------------------------------------//
-	public Animation getAnimation(Direction dir){
+	public Animation getAnimation(Direction dir,State state){
 		
-		switch (dir) {
-		case DOWN:
-			return walkDown;
-		case UP:
-			return walkUp;
-		case LEFT:
-			return walkLeft;
-		case RIGHT:
-			return walkRight;
-		case NO_DIR_DOWN:
-			return standByDown;
-		case NO_DIR_LEFT:
-			return standByLeft;
-		case NO_DIR_RIGHT:
-			return standByRight;
-		case NO_DIR_UP:
-			return standByUp;
-			
-		default:
+		//Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
+		switch(state){
+		case WALKING:
+			switch (dir) {
+			case DOWN:
+				walkDown.setFrameDuration(FRAME_WALK);
+				return walkDown;
+			case UP:
+				walkUp.setFrameDuration(FRAME_WALK);
+				return walkUp;
+			case LEFT:
+				walkLeft.setFrameDuration(FRAME_WALK);
+				return walkLeft;
+			case RIGHT:
+				walkRight.setFrameDuration(FRAME_WALK);
+				return walkRight;
+			default:
+				break;
+			}
 			break;
-
+		case RUNNING:
+			switch (dir) {
+			case DOWN:
+				walkDown.setFrameDuration(FRAME_RUN);
+				return walkDown;
+			case UP:
+				walkUp.setFrameDuration(FRAME_RUN);
+				return walkUp;
+			case LEFT:
+				walkLeft.setFrameDuration(FRAME_RUN);
+				return walkLeft;
+			case RIGHT:
+				walkRight.setFrameDuration(FRAME_RUN);
+				return walkRight;
+			default:
+				break;
+			}
+			break;
+		case STANDBY:
+			switch (dir) {
+			case NO_DIR_DOWN:
+				return standByDown;
+			case NO_DIR_LEFT:
+				return standByLeft;
+			case NO_DIR_RIGHT:
+				return standByRight;
+			case NO_DIR_UP:
+				return standByUp;
+			default:
+				break;
+			}		
+			break;
 		}
 		return null;
 	}
@@ -89,7 +126,7 @@ public class PlayerAnimation implements PlayerStates {
 		standbyLeftAnim[0] = tmp[1][0];
 		standbyRightAnim[0] = tmp[3][0];
 		
-        for(int i=0;i<FRAME_COLS;i++){
+        for(int i=0;i<COL;i++){
         	walkUpAnim[i]=tmp[0][i];
         	walkDownAnim[i]=tmp[2][i];
         	walkLeftAnim[i]=tmp[1][i];
@@ -111,10 +148,10 @@ public class PlayerAnimation implements PlayerStates {
     //-setAnimationArray							 //
     //-----------------------------------------------//
 	private void setAnimationArray(){
-        walkUpAnim = new TextureRegion[FRAME_COLS];
-        walkDownAnim = new TextureRegion[FRAME_COLS];
-        walkRightAnim = new TextureRegion[FRAME_COLS];
-        walkLeftAnim = new TextureRegion[FRAME_COLS];
+        walkUpAnim = new TextureRegion[COL];
+        walkDownAnim = new TextureRegion[COL];
+        walkRightAnim = new TextureRegion[COL];
+        walkLeftAnim = new TextureRegion[COL];
         
         standbyUpAnim = new TextureRegion[1];
         standbyDownAnim= new TextureRegion[1];
