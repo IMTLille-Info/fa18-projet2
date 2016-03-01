@@ -2,7 +2,6 @@ package fr.telecom.durifgame;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 
 import fr.telecom.durifgame.player.Player;

@@ -33,30 +33,6 @@ public class KeyListener implements InputProcessor {
     //-----------------------------------------------//
 	@Override
 	public boolean keyDown(int keycode) {
-		
-
-         
-        if(keycode == Input.Keys.LEFT){
-        	cam.translate(-32,0);
-        	player.setDir(Direction.LEFT);
-        	player.setState(State.WALKING);
-        }  
-        if(keycode == Input.Keys.RIGHT){
-        	cam.translate(32,0);
-        	player.setDir(Direction.RIGHT);
-        	player.setState(State.WALKING);
-        }
-        if(keycode == Input.Keys.UP){
-        	 cam.translate(0,32);
-        	 player.setDir(Direction.UP);
-        	 player.setState(State.WALKING);
-        }
-           
-        if(keycode == Input.Keys.DOWN){
-        	cam.translate(0,-32);
-        	player.setDir(Direction.DOWN);
-        	player.setState(State.WALKING);
-        }
             
         if(keycode == Input.Keys.NUM_1)
             map.getLayers().get(0).setVisible(!map.getLayers().get(0).isVisible());
@@ -77,8 +53,24 @@ public class KeyListener implements InputProcessor {
     //-----------------------------------------------//
 	@Override
 	public boolean keyUp(int keycode) {
-		player.setDir(Direction.NO_DIR);
-		player.setState(State.STANDBY);
+		if(player.getState()==State.WALKING){
+			if(player.getDir()==Direction.DOWN){		
+				player.setDir(Direction.NO_DIR_DOWN);
+				player.setState(State.STANDBY);
+				
+			}else if(player.getDir()==Direction.UP){		
+				player.setDir(Direction.NO_DIR_UP);
+				player.setState(State.STANDBY);
+				
+			}else if(player.getDir()==Direction.RIGHT){		
+				player.setDir(Direction.NO_DIR_RIGHT);
+				player.setState(State.STANDBY);
+				
+			}else if(player.getDir()==Direction.LEFT){		
+				player.setDir(Direction.NO_DIR_LEFT);
+				player.setState(State.STANDBY);	
+			}
+		}		
         return false;
 	}
 

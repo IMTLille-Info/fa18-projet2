@@ -37,7 +37,7 @@ public class Player implements PlayerStates{
 
         setPos(new Position(0, 0));
         setState(State.STANDBY);
-        setDir(Direction.NO_DIR);
+        setDir(Direction.NO_DIR_RIGHT);
         setAnimation(new PlayerAnimation(getState(), getDir(),path));
 	}
 
@@ -49,7 +49,7 @@ public class Player implements PlayerStates{
         stateTime += Gdx.graphics.getDeltaTime();           
         currentFrame = animation.getAnimation(dir).getKeyFrame(stateTime, true);  
         spriteBatch.begin();
-        spriteBatch.draw(currentFrame , (int)camera.getWidth()/2 ,(int) camera.getHeight()/2);             
+        spriteBatch.draw(currentFrame , camera.getWidth()/2 , camera.getHeight()/2);             
         spriteBatch.end();
         
 	}

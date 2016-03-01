@@ -8,7 +8,10 @@ public interface PlayerStates {
 	}
 	
 	public enum Direction {
-		NO_DIR,
+		NO_DIR_LEFT,
+		NO_DIR_RIGHT,
+		NO_DIR_UP,
+		NO_DIR_DOWN,
 		LEFT,
 		RIGHT,
 		UP,

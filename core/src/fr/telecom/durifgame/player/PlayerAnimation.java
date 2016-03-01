@@ -20,7 +20,11 @@ public class PlayerAnimation implements PlayerStates {
 	private Animation walkDown;
 	private Animation walkLeft;
 	private Animation walkRight;
-	private Animation standBy;
+	
+	private Animation standByUp;
+	private Animation standByDown;
+	private Animation standByLeft;
+	private Animation standByRight;
 
     private static final int FRAME_COLS = 9;
     private static final int FRAME_ROWS = 4; 
@@ -55,8 +59,15 @@ public class PlayerAnimation implements PlayerStates {
 			return walkLeft;
 		case RIGHT:
 			return walkRight;
-		case NO_DIR:
-			return standBy;
+		case NO_DIR_DOWN:
+			return standByDown;
+		case NO_DIR_LEFT:
+			return standByLeft;
+		case NO_DIR_RIGHT:
+			return standByRight;
+		case NO_DIR_UP:
+			return standByUp;
+			
 		default:
 			break;
 
@@ -74,7 +85,6 @@ public class PlayerAnimation implements PlayerStates {
 		standbyLeftAnim[0] = tmp[1][0];
 		standbyRightAnim[0] = tmp[3][0];
 		
-		
         for(int i=0;i<FRAME_COLS;i++){
         	walkUpAnim[i]=tmp[0][i];
         	walkDownAnim[i]=tmp[2][i];
@@ -85,8 +95,12 @@ public class PlayerAnimation implements PlayerStates {
         walkUp = new Animation(0.06f, walkUpAnim);
         walkDown = new Animation(0.06f, walkDownAnim); 
         walkRight = new Animation(0.06f, walkRightAnim); 
-        walkLeft = new Animation(0.06f, walkLeftAnim); 
-        standBy = new Animation(0.06f, standbyUpAnim); 	
+        walkLeft = new Animation(0.06f, walkLeftAnim);
+        
+        standByUp = new Animation(0.06f, standbyUpAnim); 
+        standByDown = new Animation(0.06f,standbyDownAnim);
+        standByRight = new Animation(0.06f,standbyRightAnim);
+        standByLeft = new Animation(0.06f,standbyLeftAnim);
 	}
 	
 	//-----------------------------------------------//
