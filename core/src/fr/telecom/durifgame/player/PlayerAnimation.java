@@ -11,8 +11,11 @@ public class PlayerAnimation implements PlayerStates {
 	private TextureRegion[]	walkDownAnim;
 	private TextureRegion[] walkLeftAnim;
 	private TextureRegion[] walkRightAnim;
-	private TextureRegion[] standByAnim;
-    
+	private TextureRegion[] standbyUpAnim;
+	private TextureRegion[] standbyDownAnim;
+	private TextureRegion[] standbyLeftAnim;
+	private TextureRegion[] standbyRightAnim;
+	
 	private Animation walkUp;
 	private Animation walkDown;
 	private Animation walkLeft;
@@ -34,12 +37,7 @@ public class PlayerAnimation implements PlayerStates {
 		
 		TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/FRAME_COLS, walkSheet.getHeight()/FRAME_ROWS);
 		
-        walkUpAnim = new TextureRegion[FRAME_COLS];
-        walkDownAnim = new TextureRegion[FRAME_COLS];
-        walkRightAnim = new TextureRegion[FRAME_COLS]; 
-        walkLeftAnim = new TextureRegion[FRAME_COLS];
-        standByAnim = new TextureRegion[1];
-        
+		setAnimationArray();
         setAnimation(tmp);
 	}
 	
@@ -70,8 +68,13 @@ public class PlayerAnimation implements PlayerStates {
     //-setAnimation									 //
     //-----------------------------------------------//
 	private void setAnimation(TextureRegion[][] tmp){
-		standByAnim[0]=tmp[0][0];
-
+		
+		standbyUpAnim[0] = tmp[0][0];
+		standbyDownAnim[0]  = tmp[2][0];
+		standbyLeftAnim[0] = tmp[1][0];
+		standbyRightAnim[0] = tmp[3][0];
+		
+		
         for(int i=0;i<FRAME_COLS;i++){
         	walkUpAnim[i]=tmp[0][i];
         	walkDownAnim[i]=tmp[2][i];
@@ -83,6 +86,22 @@ public class PlayerAnimation implements PlayerStates {
         walkDown = new Animation(0.06f, walkDownAnim); 
         walkRight = new Animation(0.06f, walkRightAnim); 
         walkLeft = new Animation(0.06f, walkLeftAnim); 
-        standBy = new Animation(0.06f, standByAnim); 	
-	}	
+        standBy = new Animation(0.06f, standbyUpAnim); 	
+	}
+	
+	//-----------------------------------------------//
+    //-setAnimationArray							 //
+    //-----------------------------------------------//
+	private void setAnimationArray(){
+        walkUpAnim = new TextureRegion[FRAME_COLS];
+        walkDownAnim = new TextureRegion[FRAME_COLS];
+        walkRightAnim = new TextureRegion[FRAME_COLS];
+        walkLeftAnim = new TextureRegion[FRAME_COLS];
+        
+        standbyUpAnim = new TextureRegion[1];
+        standbyDownAnim= new TextureRegion[1];
+        standbyLeftAnim = new TextureRegion[1];
+        standbyRightAnim= new TextureRegion[1];
+		
+	}
 }

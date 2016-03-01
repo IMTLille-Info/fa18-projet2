@@ -1,6 +1,5 @@
 package fr.telecom.durifgame;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
@@ -23,8 +22,8 @@ public class Map {
 	//-----------------------------------------------//
     //-setView										 //
     //-----------------------------------------------//
-    protected void setView(OrthographicCamera camera){
-    	tiledMapRenderer.setView(camera);
+    protected void setView(Camera camera){
+    	tiledMapRenderer.setView(camera.getCamera());
     }
 	//-----------------------------------------------//
     //-render										 //

@@ -1,5 +1,6 @@
 # ProjetJeuTL
 
-test bite
-
-test chate
+Touche :
+Entre => lancer musique
+ESC => Stop music
+Fleches => Deplacement 

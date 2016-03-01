@@ -15,8 +15,7 @@ public class Player implements PlayerStates{
 	private Direction dir;
 	private PlayerAnimation animation;
 	private Sprite sprite;
-
-    private TextureRegion[] walkFrames;             
+           
     
     private SpriteBatch spriteBatch;            
     private TextureRegion currentFrame;           
@@ -50,7 +49,7 @@ public class Player implements PlayerStates{
         stateTime += Gdx.graphics.getDeltaTime();           
         currentFrame = animation.getAnimation(dir).getKeyFrame(stateTime, true);  
         spriteBatch.begin();
-        spriteBatch.draw(currentFrame , camera.getWidth()/2 , camera.getHeight()/2);             
+        spriteBatch.draw(currentFrame , (int)camera.getWidth()/2 ,(int) camera.getHeight()/2);             
         spriteBatch.end();
         
 	}

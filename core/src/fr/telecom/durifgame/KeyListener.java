@@ -3,6 +3,7 @@ package fr.telecom.durifgame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 
 import fr.telecom.durifgame.player.Player;
 import fr.telecom.durifgame.player.PlayerStates.*;
@@ -13,6 +14,7 @@ public class KeyListener implements InputProcessor {
 	private Map map;
 	private Player player;
 	private Music music;
+	int test = 0;
 	
 	//----------------------------------------------//
     //-KeyListener									//
@@ -31,6 +33,9 @@ public class KeyListener implements InputProcessor {
     //-----------------------------------------------//
 	@Override
 	public boolean keyDown(int keycode) {
+		
+
+         
         if(keycode == Input.Keys.LEFT){
         	cam.translate(-32,0);
         	player.setDir(Direction.LEFT);
@@ -124,6 +129,37 @@ public class KeyListener implements InputProcessor {
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	//-----------------------------------------------//
+    //-scrolled										 //
+    //-----------------------------------------------//
+	public void keyPressed(){
+        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+        	player.getPos().setPosX(player.getPos().getPosX()-Gdx.graphics.getDeltaTime()*(float)0);
+        	cam.translate(-32,0);
+         	player.setDir(Direction.LEFT);
+         	player.setState(State.WALKING);
+        	 }
+        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        	player.getPos().setPosX(player.getPos().getPosX()+Gdx.graphics.getDeltaTime()*(float)0);
+        	cam.translate(32,0);
+         	player.setDir(Direction.RIGHT);
+         	player.setState(State.WALKING);
+        	 }
+        if(Gdx.input.isKeyPressed(Keys.UP)) {
+
+        	player.getPos().setPosY(player.getPos().getPosY()-Gdx.graphics.getDeltaTime()*(float)0);
+        	cam.translate(0,32);
+         	player.setDir(Direction.UP);
+         	player.setState(State.WALKING);
+        	 }
+        if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+        	player.getPos().setPosY(player.getPos().getPosY()-Gdx.graphics.getDeltaTime()*(float)0);
+        	cam.translate(0,-32);
+         	player.setDir(Direction.DOWN);
+         	player.setState(State.WALKING);
+        	 }
 	}
 	
 
