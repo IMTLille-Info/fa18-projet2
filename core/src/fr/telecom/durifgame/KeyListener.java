@@ -10,7 +10,7 @@ import fr.telecom.durifgame.player.PlayerStates.*;
 
 public class KeyListener implements InputProcessor {
 
-	private final static boolean DBG = true;
+	private final static boolean DBG = false;
 	private final static String TAG = KeyListener.class.getSimpleName();
 
 	private Camera cam;
@@ -148,7 +148,7 @@ public class KeyListener implements InputProcessor {
 		int speed = player.getSpeed();
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			player.getPos().setPosX(player.getPos().getPosX() - Gdx.graphics.getDeltaTime() * (float) 0);
+			player.setX((player.getPos().getPosX() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(-speed, 0);
 			player.setDir(Direction.LEFT);	
 			if(speed == Player.RUN){
@@ -157,7 +157,7 @@ public class KeyListener implements InputProcessor {
 				player.setState(State.WALKING);
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			player.getPos().setPosX(player.getPos().getPosX() + Gdx.graphics.getDeltaTime() * (float) 0);
+			player.setX((player.getPos().getPosX() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(speed, 0);
 			player.setDir(Direction.RIGHT);
 			if(speed == Player.RUN){
@@ -166,7 +166,8 @@ public class KeyListener implements InputProcessor {
 				player.setState(State.WALKING);
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			player.getPos().setPosY(player.getPos().getPosY() - Gdx.graphics.getDeltaTime() * (float) 0);
+			player.setY((player.getPos().getPosY() + Gdx.graphics.getDeltaTime() * (float) 1));
+			//Log.logd(true, TAG, "Gdx.graphics.getDeltaTime() * (float) 1)" + player.getPos().getPosX() + Gdx.graphics.getDeltaTime() * (float) 1);
 			cam.translate(0, speed);
 			player.setDir(Direction.UP);
 			if(speed == Player.RUN){
@@ -175,7 +176,7 @@ public class KeyListener implements InputProcessor {
 				player.setState(State.WALKING);
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			player.getPos().setPosY(player.getPos().getPosY() - Gdx.graphics.getDeltaTime() * (float) 0);
+			player.setY((player.getPos().getPosY() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, -speed);
 			player.setDir(Direction.DOWN);
 			if(speed == Player.RUN){

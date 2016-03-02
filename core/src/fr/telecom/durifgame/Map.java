@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Map {
 	
-	private final static boolean DBG = true;
+	private final static boolean DBG = false;
 	private final static String TAG = Map.class.getSimpleName();
 	
 	private TiledMapRenderer tiledMapRenderer;
