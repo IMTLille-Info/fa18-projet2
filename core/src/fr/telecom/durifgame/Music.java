@@ -5,7 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 
 public class Music {
 	
-	private Sound sound;
+	protected Sound sound;
 	private boolean isPlay;
 	
 	//----------------------------------------------//

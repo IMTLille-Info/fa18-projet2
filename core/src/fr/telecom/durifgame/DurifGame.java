@@ -44,9 +44,8 @@ public class DurifGame extends ApplicationAdapter {
         
         kListener.keyPressed();
         if(player.checkPosition()){
-        	music.playMusic();
-        }else
-        	music.stopMusic();
+        	player.newGold();
+        }
         cam.update();
         map.setView(cam);
         map.render();

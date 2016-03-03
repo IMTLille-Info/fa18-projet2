@@ -9,6 +9,7 @@ import fr.telecom.durifgame.Camera;
 import fr.telecom.durifgame.Gold;
 import fr.telecom.durifgame.Log;
 import fr.telecom.durifgame.Position;
+import fr.telecom.durifgame.Sonar;
 
 public class Player implements PlayerStates{
 	
@@ -21,8 +22,10 @@ public class Player implements PlayerStates{
 	private Direction dir;
 	private PlayerAnimation animation;
 	private Sprite sprite;
+	private Sonar sonar;
            
-    
+    private int money;
+	
     private SpriteBatch spriteBatch;            
     private TextureRegion currentFrame;           
     
@@ -35,7 +38,9 @@ public class Player implements PlayerStates{
     public static final int WALK = 1;
     private static final double DELTA = 0.5;
     
-    Gold temp;
+    int temp = 0;
+    
+    Gold gold;
     
     
 	//----------------------------------------------//
@@ -53,8 +58,10 @@ public class Player implements PlayerStates{
         speed = WALK;
         dir = Direction.NO_DIR_RIGHT;
         animation = new PlayerAnimation(state, dir,path);
-        temp = new Gold((float)(Math.random()*10), (float)(Math.random()*10));
-        Log.logd(true, TAG, "GOLD    X = "+temp.getPosX()+" Y = "+temp.getPosY());
+        newGold();
+        sonar = new Sonar();
+        money = 0;
+        Log.logd(true, TAG, "GOLD    X = "+gold.getPosX()+" Y = "+gold.getPosY());
 	}
 
 	//-----------------------------------------------//
@@ -91,7 +98,7 @@ public class Player implements PlayerStates{
     //-getPos								 		//
     //----------------------------------------------//
 	public Position getPos() {
-		Log.logd(true, TAG,"X = "+pos.getPosX()+" Y = "+pos.getPosY());
+		//Log.logd(true, TAG,"X = "+pos.getPosX()+" Y = "+pos.getPosY());
 		return pos;
 	}
 	//----------------------------------------------//
@@ -160,21 +167,39 @@ public class Player implements PlayerStates{
     	pos.setPosY(y);
     }
     
+	//----------------------------------------------//
+    //-checkPosition							 	//
+    //----------------------------------------------/
     public boolean checkPosition(){
     	
-    	//Log.logd(true, TAG, " GOLD ::X = "+temp.getPosX()+" Y = "+temp.getPosY());
+    	//Log.logd(true, TAG, " GOLD ::X = "+gold.getPosX()+" Y = "+gold.getPosY());
     	
-    	float x = Math.abs(temp.getPosX()-pos.getPosX());
+    	float x = Math.abs(gold.getPosX()-pos.getPosX());
     	
-    	float y = Math.abs(temp.getPosY()-pos.getPosY());
+    	float y = Math.abs(gold.getPosY()-pos.getPosY());
     	
+    	if(sonar != null){
+    		sonar.setDif(x, y);
+    	}
     	//Log.logd(true, TAG, "checkPosition :: x "+x+" y "+y);
     	
     	if(x<=DELTA){
-    		if(y<=DELTA)
+    		if(y<=DELTA){
+    			temp++;
+    			money += gold.getValue();
+    			Log.logd(true, TAG, "money = "+money);
+    			if(temp>2)
+    				sonar = null;
     			return true;
+    		}
+    			
+    			
     	}
     	
     	return false;
+    }
+    
+    public void newGold(){
+    	gold = new Gold((float)(Math.random()*10), (float)(Math.random()*10));
     }
 }
