@@ -3,6 +3,7 @@ package fr.telecom.durifgame.items;
 public interface itemDefinition {
 	
 	public enum ItemType {
+		VIDE,
 		POTION,
 		ARME,
 		ARMURE,

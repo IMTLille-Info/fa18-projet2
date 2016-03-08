@@ -60,6 +60,7 @@ public class Player implements PlayerStates{
         dir = Direction.NO_DIR_RIGHT;
         animation = new PlayerAnimation(state, dir,path);
         inventory = new Inventory();
+        inventory.debugInventory();
         newGold();
         sonar = new Sonar();
         money = 0;

@@ -10,6 +10,9 @@ public class Inventory {
 	
 	public Inventory() {
 		inventory = new Item[SIZE];
+		for(int i = 0; i < SIZE; i++) {
+			inventory[i] = new Item();
+		}
 	}
 	
 	public void debugInventory() {

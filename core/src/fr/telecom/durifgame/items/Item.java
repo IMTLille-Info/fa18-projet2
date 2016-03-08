@@ -15,13 +15,34 @@ public class Item {
 	private Loot loot;
 
 	public Item() {
-		
+		type = ItemType.VIDE;
+	}
+	public Item(ItemType type) {
+		this.type = type;
+	}
+	public Item(ItemType type, Potion potion) {
+		this.type = type;
+		this.potion = potion;
+	}
+	public Item(ItemType type, Arme arme) {
+		this.type = type;
+		this.arme = arme;
+	}
+	public Item(ItemType type, Armure armure) {
+		this.type = type;
+		this.armure = armure;
+	}
+	public Item(ItemType type, Loot loot) {
+		this.type = type;
+		this.loot = loot;
 	}
 	
 	public String toString() {
 		String chaine = "";
 		
 		switch(type) {
+		
+		case VIDE: chaine = "vide"; break;
 		
 		case POTION:
 			switch(potion) {
