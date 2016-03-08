@@ -1,14 +1,15 @@
 package fr.telecom.durifgame.player;
 
 import fr.telecom.durifgame.Log;
+import fr.telecom.durifgame.items.Item;
 
 public class Inventory {
 
 	private static final int SIZE = 6;
-	private String[] inventory;
+	private Item[] inventory;
 	
 	public Inventory() {
-		inventory = new String[SIZE];
+		inventory = new Item[SIZE];
 	}
 	
 	public void debugInventory() {

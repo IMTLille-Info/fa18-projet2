@@ -16,7 +16,8 @@ public interface itemDefinition {
 	}
 	
 	public enum Arme {
-		EPEE
+		EPEE,
+		BATON
 	}
 	
 	public enum Armure {
@@ -27,7 +28,8 @@ public interface itemDefinition {
 	}
 	
 	public enum Loot {
-		POMME
+		POMME,
+		POIRE
 	}
 
 }
