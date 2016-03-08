@@ -40,6 +40,7 @@ public class Player implements PlayerStates{
     
     int temp = 0;
     
+    Inventory inventory;
     Gold gold;
     
     
@@ -58,6 +59,7 @@ public class Player implements PlayerStates{
         speed = WALK;
         dir = Direction.NO_DIR_RIGHT;
         animation = new PlayerAnimation(state, dir,path);
+        inventory = new Inventory();
         newGold();
         sonar = new Sonar();
         money = 0;
