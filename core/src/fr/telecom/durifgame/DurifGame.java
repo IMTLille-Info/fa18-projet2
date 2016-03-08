@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 import fr.telecom.durifgame.player.Player;
+import fr.telecom.durifgame.scenes.Hud;
 
 public class DurifGame extends ApplicationAdapter {
 	
@@ -16,6 +17,7 @@ public class DurifGame extends ApplicationAdapter {
     private KeyListener kListener;
     private Player player;
     private Music music;
+    private Hud hud;
     
 	//----------------------------------------------//
     //-create										//
@@ -28,9 +30,7 @@ public class DurifGame extends ApplicationAdapter {
         player = new Player("soldier.png",cam);
         music = new Music("lost-in-the-meadows.ogg");
         kListener = new KeyListener(cam, map, player,music);
-
-        
-        
+        hud = new Hud();
 	}
 
 	//-----------------------------------------------//
