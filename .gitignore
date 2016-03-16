@@ -21,3 +21,5 @@ ios/.settings/
 ios/bin/
 local.properties
 .gitignore~
+.gitignore.save
+Roadmap~

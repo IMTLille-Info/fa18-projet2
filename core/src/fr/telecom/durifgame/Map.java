@@ -25,13 +25,13 @@ public class Map {
 	//-----------------------------------------------//
     //-setView										 //
     //-----------------------------------------------//
-    protected void setView(Camera camera){
+    public void setView(Camera camera){
     	tiledMapRenderer.setView(camera.getCamera());
     }
 	//-----------------------------------------------//
     //-render										 //
     //-----------------------------------------------//
-    protected void render(){
+    public void render(){
     	tiledMapRenderer.render();
     }
 	//-----------------------------------------------//
