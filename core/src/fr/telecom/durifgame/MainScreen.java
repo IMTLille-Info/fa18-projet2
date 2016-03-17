@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainScreen  implements Screen{
 	
 	DurifGame durifGame;
+
 	Sprite sprite;
 	Texture texture;
 	SpriteBatch spriteBatch;
@@ -50,9 +51,8 @@ public class MainScreen  implements Screen{
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.ENTER)){
-			durifGame.changeScreen(durifGame.START_GAME);;
+			durifGame.changeScreen(DurifGame.START_GAME);
 		}
-		
 	}
 
 	@Override

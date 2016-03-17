@@ -27,7 +27,7 @@ public class DurifGame extends Game {
 		mainScreen = new MainScreen(this);
 		gameScreen = new GameScreen();
 		setScreen(mainScreen);
-	}
+	} 
 
 	//-----------------------------------------------//
     //-render										 //
