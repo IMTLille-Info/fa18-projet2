@@ -195,10 +195,8 @@ public class Player implements PlayerStates{
     				sonar = null;
     			return true;
     		}
-    			
-    			
+    				
     	}
-    	
     	return false;
     }
     

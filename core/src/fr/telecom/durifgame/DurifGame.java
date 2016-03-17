@@ -27,24 +27,8 @@ public class DurifGame extends Game {
 		mainScreen = new MainScreen(this);
 		gameScreen = new GameScreen();
 		setScreen(mainScreen);
-	} 
-
-	//-----------------------------------------------//
-    //-render										 //
-    //-----------------------------------------------//
-	@Override
-	public void render() {
-		super.render();    
 	}
 	
-	//-----------------------------------------------//
-    //-dispose										 //
-    //-----------------------------------------------//
-    @Override
-    public void dispose() {
-    	super.dispose();
-    }
-    
     protected void changeScreen(int key){
     	switch(key){
     	case START_GAME:
