@@ -1,27 +1,41 @@
 package fr.telecom.durifgame;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Game;
 
-public class DurifGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+import fr.telecom.durifgame.GameScreen;
+
+
+
+public class DurifGame extends Game {
 	
+	private final static boolean DBG = true;
+	private final static String TAG = DurifGame.class.getSimpleName();
+	
+	protected final static int START_GAME = 1;
+
+    MainScreen mainScreen;
+    GameScreen gameScreen;
+    
+    
+	//----------------------------------------------//
+    //-create										//
+    //-Constructeur									//
+    //----------------------------------------------//
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+	
+		mainScreen = new MainScreen(this);
+		gameScreen = new GameScreen();
+		setScreen(mainScreen);
 	}
-
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
+	
+    protected void changeScreen(int key){
+    	switch(key){
+    	case START_GAME:
+    		setScreen(gameScreen);
+    		break;
+    	default:
+    			Log.logd(DBG, TAG, "changeScreen invalid key = "+key);
+    	}
+    }
 }
