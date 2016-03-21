@@ -31,7 +31,7 @@ public class MainScreen  implements Screen{
 		font = new BitmapFont();
 		font.setColor(Color.RED);
 		spriteBatch = new SpriteBatch();
-		texture = new Texture("durifMain.jpg");
+		texture = new Texture("resources/images/durifMain.jpg");
 		sprite = new Sprite(texture);
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		

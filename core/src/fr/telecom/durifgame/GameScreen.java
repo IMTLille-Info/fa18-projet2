@@ -23,9 +23,9 @@ public class GameScreen implements Screen{
     
 	public GameScreen() {
 	  cam = new Camera();
-      map = new Map("exemple.tmx");
-      player = new Player("soldier.png",cam);
-      music = new Music("lost-in-the-meadows.ogg");
+      map = new Map("resources/map/exemple.tmx");
+      player = new Player("resources/sprites/soldier.png",cam);
+      music = new Music("resources/sound/musicGame.ogg");
       kListener = new KeyListener(cam, map, player,music);
       hud = new Hud();
 	}

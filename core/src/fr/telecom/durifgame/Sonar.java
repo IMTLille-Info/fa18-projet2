@@ -17,7 +17,7 @@ public class Sonar {
 	private float difY;
 
 	public Sonar() {
-		bip = Gdx.audio.newSound(Gdx.files.internal("bip1.wav"));
+		bip = Gdx.audio.newSound(Gdx.files.internal("resources/sound/bip1.wav"));
 		distance = FAR;
 	}
 	
