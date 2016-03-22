@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import fr.telecom.durifgame.Camera;
+import fr.telecom.durifgame.DurifGame.GameState;
 import fr.telecom.durifgame.KeyListener;
 import fr.telecom.durifgame.Map;
 import fr.telecom.durifgame.Music;
@@ -19,15 +20,19 @@ public class GameScreen implements Screen{
     private Player player;
     private Music music;
     private Hud hud;
+    private Battle battle;
+    private DurifGame game;
     
     
-	public GameScreen() {
+	public GameScreen(DurifGame game) {
+	  this.game = game;
 	  cam = new Camera();
       map = new Map("resources/map/exemple.tmx");
       player = new Player("resources/sprites/soldier.png",cam);
       music = new Music("resources/sound/musicGame.ogg");
       kListener = new KeyListener(cam, map, player,music);
       hud = new Hud();
+      battle = newBattle();
 	}
 	
 	@Override
@@ -38,19 +43,26 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-        kListener.keyPressed();
-        if(player.checkPosition()){
-        	player.newGold();
-        }
-        cam.update();
-        map.setView(cam);
-        map.render();
-        player.displayPlayer();
-		
+		if(game.gameState == GameState.PLAY){
+			Gdx.gl.glClearColor(1, 0, 0, 1);
+	        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	        
+	        kListener.keyPressed();
+	        if(player.checkPositionGold())
+	        	player.newGold();
+	        if(battle.startBattle(player.getPos())){
+	        	music.stopMusic();
+	        	game.changeScreen(DurifGame.START_BATTLE);
+	        	battle = newBattle();
+	        	
+	        }
+	        	
+	        cam.update();
+	        map.setView(cam);
+	        map.render();
+	        player.displayPlayer();
+		}
 	}
 
 	@Override
@@ -62,19 +74,23 @@ public class GameScreen implements Screen{
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
+		Log.logd(true, "gamesreen", "pause");
+		music.stopMusic();
+		game.gameState = GameState.PAUSE;
 		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
+		Log.logd(true, "gamesreen", "resume");
+		music.playMusic();
+		game.gameState = GameState.PLAY;
 		
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
@@ -83,6 +99,9 @@ public class GameScreen implements Screen{
     		map.dispose();
     	if(music != null)
     		music.dispose();	
-    }
-		
+	}
+	
+	private Battle newBattle(){
+		return new Battle((float)(Math.random()*10), (float)(Math.random()*10));
+	}
 }

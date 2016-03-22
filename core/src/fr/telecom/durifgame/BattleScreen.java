@@ -1,37 +1,36 @@
 package fr.telecom.durifgame;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class MainScreen  implements Screen{
-	
-	DurifGame durifGame;
+public class BattleScreen implements Screen {
 
 	Sprite sprite;
 	Texture texture;
 	SpriteBatch spriteBatch;
 	SpriteBatch batch;
 	BitmapFont font;
+	DurifGame game;
+	//Battle battle;
+	private Music sound;
 	
-	
-	
-	public MainScreen(DurifGame game) {
-		this.durifGame = game;
+	public BattleScreen(DurifGame game) {
+		this.game = game;
+		sound = new Music("resources/sound/battleSound.ogg");
+		sound.playMusic();
+		
 	}
-
+	
 	@Override
 	public void show() {
-		font = new BitmapFont();
-		font.setColor(Color.RED);
 		spriteBatch = new SpriteBatch();
-		texture = new Texture(Gdx.files.internal("resources/images/durifMain.jpg"));
+		texture = new Texture(Gdx.files.internal("resources/background/battle.png"));
 		sprite = new Sprite(texture);
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
@@ -43,14 +42,12 @@ public class MainScreen  implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
 		spriteBatch.begin();
-		
 		sprite.draw(spriteBatch);
-		font.draw(spriteBatch, "Press ENTER to start game", Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 		spriteBatch.end();
 		
-		
-		if(Gdx.input.isKeyPressed(Keys.ENTER)){
-			durifGame.changeScreen(DurifGame.START_GAME);
+		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
+			game.changeScreen(game.RESTART_GAME);
+			sound.stopMusic();
 		}
 	}
 

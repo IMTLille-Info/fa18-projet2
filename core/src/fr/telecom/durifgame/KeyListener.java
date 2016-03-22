@@ -148,7 +148,7 @@ public class KeyListener implements InputProcessor {
 		int speed = player.getSpeed();
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			player.setX((player.getPos().getPosX() - Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setX((player.getPos().x() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(-speed, 0);
 			player.setDir(Direction.LEFT);	
 			if(speed == Player.RUN){
@@ -157,7 +157,7 @@ public class KeyListener implements InputProcessor {
 				player.setState(State.WALKING);
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			player.setX((player.getPos().getPosX() + Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setX((player.getPos().x() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(speed, 0);
 			player.setDir(Direction.RIGHT);
 			if(speed == Player.RUN){
@@ -166,7 +166,7 @@ public class KeyListener implements InputProcessor {
 				player.setState(State.WALKING);
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			player.setY((player.getPos().getPosY() + Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setY((player.getPos().y() + Gdx.graphics.getDeltaTime() * (float) 1));
 			//Log.logd(true, TAG, "Gdx.graphics.getDeltaTime() * (float) 1)" + player.getPos().getPosX() + Gdx.graphics.getDeltaTime() * (float) 1);
 			cam.translate(0, speed);
 			player.setDir(Direction.UP);
@@ -176,7 +176,7 @@ public class KeyListener implements InputProcessor {
 				player.setState(State.WALKING);
 			}
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			player.setY((player.getPos().getPosY() - Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setY((player.getPos().y() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, -speed);
 			player.setDir(Direction.DOWN);
 			if(speed == Player.RUN){

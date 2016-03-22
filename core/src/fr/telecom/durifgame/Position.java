@@ -2,28 +2,28 @@ package fr.telecom.durifgame;
 
 public class Position {
 
-	private float posX;
-	private float posY;
+	protected float x;
+	protected float y;
 	
-	public Position(float posX, float posY) {
-		this.posX = posX;
-		this.posY = posY;
+	public Position(float x, float y) {
+		this.x = x;
+		this.y = y;
 	}
 	
-	public float getPosX() {
-		return posX;
+	public float x() {
+		return x;
 	}
 
-	public void setPosX(float posX) {
-		this.posX = posX;
+	public void setPosX(float x) {
+		this.x = x;
 	}
 
-	public float getPosY() {
-		return posY;
+	public float y() {
+		return y;
 	}
 
-	public void setPosY(float posY) {
-		this.posY = posY;
+	public void setPosY(float y) {
+		this.y = y;
 	}
 	
 }

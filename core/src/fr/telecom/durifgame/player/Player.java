@@ -64,7 +64,7 @@ public class Player implements PlayerStates{
         newGold();
         sonar = new Sonar();
         money = 0;
-        Log.logd(true, TAG, "GOLD    X = "+gold.getPosX()+" Y = "+gold.getPosY());
+        Log.logd(true, TAG, "GOLD    X = "+gold.x()+" Y = "+gold.y());
 	}
 
 	//-----------------------------------------------//
@@ -173,13 +173,13 @@ public class Player implements PlayerStates{
 	//----------------------------------------------//
     //-checkPosition							 	//
     //----------------------------------------------/
-    public boolean checkPosition(){
+    public boolean checkPositionGold(){
     	
     	//Log.logd(true, TAG, " GOLD ::X = "+gold.getPosX()+" Y = "+gold.getPosY());
     	
-    	float x = Math.abs(gold.getPosX()-pos.getPosX());
+    	float x = Math.abs(gold.x()-pos.x());
     	
-    	float y = Math.abs(gold.getPosY()-pos.getPosY());
+    	float y = Math.abs(gold.y()-pos.y());
     	
     	if(sonar != null){
     		sonar.setDif(x, y);

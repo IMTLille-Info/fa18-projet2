@@ -15,6 +15,8 @@ public class Sonar {
 	private Sound bip;
 	private float difX;
 	private float difY;
+	
+	private int nbBoucle = 0;
 
 	public Sonar() {
 		bip = Gdx.audio.newSound(Gdx.files.internal("resources/sound/bip1.wav"));
@@ -28,7 +30,11 @@ public class Sonar {
 		return haveSonar;
 	}
 	public void playSonard(float distance){
-		bip.play(distance,1,0);
+		nbBoucle++;
+		if(nbBoucle > 50){
+			bip.play(distance,1,0);
+			nbBoucle = 0;
+		}
 	}
 	
 	public void setDif(float x , float y){
@@ -39,7 +45,7 @@ public class Sonar {
 	
 	private void checkDif(){
 		
-		Log.logd(true, "sonar", "X = "+difX+" Y = "+difY);
+		//Log.logd(true, "sonar", "X = "+difX+" Y = "+difY);
 		if(difX > 5 || difY > 5){
 			distance = FAR;
 			//Log.logd(true, "sonar", "sup 5");
