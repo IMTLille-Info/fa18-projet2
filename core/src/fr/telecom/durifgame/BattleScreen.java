@@ -12,6 +12,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class BattleScreen implements Screen {
 
 	Sprite sprite;
+	Sprite soldierSprite;
+	Sprite monsterSprite;
+	Texture soldierTexture;
+	Texture monsterTexture;
 	Texture texture;
 	SpriteBatch spriteBatch;
 	SpriteBatch batch;
@@ -31,7 +35,11 @@ public class BattleScreen implements Screen {
 	public void show() {
 		spriteBatch = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal("resources/background/battle.png"));
+		soldierTexture = new Texture(Gdx.files.internal("resources/battle/hero.png"));
+		monsterTexture = new Texture(Gdx.files.internal("resources/battle/gobelin.png"));
 		sprite = new Sprite(texture);
+		monsterSprite = new Sprite(monsterTexture);
+		soldierSprite = new Sprite(soldierTexture,Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 	}
@@ -43,6 +51,8 @@ public class BattleScreen implements Screen {
         
 		spriteBatch.begin();
 		sprite.draw(spriteBatch);
+		monsterSprite.draw(spriteBatch);
+		soldierSprite.draw(spriteBatch);
 		spriteBatch.end();
 		
 		if(Gdx.input.isKeyPressed(Keys.ESCAPE)){
