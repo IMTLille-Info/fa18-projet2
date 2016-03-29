@@ -8,13 +8,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import fr.telecom.durifgame.Sonar;
 import fr.telecom.durifgame.gold.Gold;
 import fr.telecom.durifgame.items.Inventory;
+import fr.telecom.durifgame.items.Item;
+import fr.telecom.durifgame.items.itemDefinition.Arme;
+import fr.telecom.durifgame.items.itemDefinition.Armure;
+import fr.telecom.durifgame.items.itemDefinition.ItemType;
+import fr.telecom.durifgame.items.itemDefinition.Loot;
+import fr.telecom.durifgame.items.itemDefinition.Potion;
 import fr.telecom.durifgame.utils.Camera;
 import fr.telecom.durifgame.utils.Log;
 import fr.telecom.durifgame.utils.Position;
 
 public class Player implements PlayerStates{
 	
-	private final static boolean DBG = true;
+	private final static boolean DBG = false;
 	private final static String TAG = Player.class.getSimpleName();
 
 
@@ -45,7 +51,7 @@ public class Player implements PlayerStates{
     
     int temp = 0;
     
-    private Inventory inventory;
+    public Inventory inventory;
 	Gold gold;
     
     
@@ -57,13 +63,15 @@ public class Player implements PlayerStates{
         stateTime = 0f;                         
         setPos(new Position(0, 0));
         score = 200;
-        life = 68;
+        life = 100;
         state = State.STANDBY;
         speed = STANDBY;
         dir = Direction.NO_DIR_RIGHT;
         animation = new PlayerAnimation(state, dir,path);
+        
         inventory = new Inventory();
-        inventory.toString();
+        testInventory();
+        
         newGold();
         sonar = new Sonar();
         money = 0;
@@ -71,14 +79,11 @@ public class Player implements PlayerStates{
 	}
 
 	public void displayPlayer(){
-		Log.logd(DBG, TAG, "POMME");
         stateTime += Gdx.graphics.getDeltaTime();
      
         try{
-        	Log.logd(DBG, TAG, "PWAR");
         	Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
-        	currentFrame = animation.getAnimation(dir,state).getKeyFrame(stateTime, true);  
-        	Log.logd(DBG, TAG, "PAISH");
+        	currentFrame = animation.getAnimation(dir,state).getKeyFrame(stateTime, true); 
         }catch(Exception e){
         	e.printStackTrace();
         }
@@ -154,8 +159,11 @@ public class Player implements PlayerStates{
 		return life;
 	}
 
-	public void setLife(int life) {
-		this.life = life;
+	public void addLife(int life) {
+		this.life += life;
+		if(this.life > 100) {
+			this.life = 100;
+		}
 	}
 	
 	public int getScore() {
@@ -204,5 +212,53 @@ public class Player implements PlayerStates{
     	} else if (STANDBY == speed) {
     		state = State.STANDBY;
     	}
+    }
+    
+    public void testInventory() {
+        Log.logd(true, TAG, inventory.toString());
+        
+        Item epee = new Item(ItemType.ARME, Arme.EPEE);
+        Item potionVie = new Item(ItemType.POTION, Potion.VIE);
+        Item plastron = new Item(ItemType.ARMURE, Armure.PLASTRON);
+        Item pomme = new Item(ItemType.LOOT, Loot.POMME);
+        
+        inventory.addItem(epee);
+        Log.logd(true, TAG, inventory.toString());
+        inventory.addItem(potionVie);
+        Log.logd(true, TAG, inventory.toString());
+        inventory.addItem(plastron);
+        Log.logd(true, TAG, inventory.toString());
+        inventory.addItem(epee);
+        Log.logd(true, TAG, inventory.toString());
+        inventory.addItem(potionVie);
+        Log.logd(true, TAG, inventory.toString());
+        inventory.addItem(epee);
+        Log.logd(true, TAG, inventory.toString());
+        inventory.addItem(potionVie);
+        Log.logd(true, TAG, inventory.toString());
+        Log.logd(true, TAG, "---------------");
+        
+        Log.logd(true, TAG, inventory.getItem(3).toString());
+        Log.logd(true, TAG, "---------------");
+        
+        inventory.removeItem(3);
+        Log.logd(true, TAG, inventory.toString());
+        Log.logd(true, TAG, "---------------");
+        
+        inventory.addItem(pomme);
+        Log.logd(true, TAG, inventory.toString());
+        Log.logd(true, TAG, "---------------");
+        
+        life = 68;
+        Log.logd(true, TAG, Integer.toString(getLife()));
+        inventory.useItem(this, 5);
+        Log.logd(true, TAG, inventory.toString());
+        Log.logd(true, TAG, Integer.toString(getLife()));
+        inventory.useItem(this, 3);
+        Log.logd(true, TAG, inventory.toString());
+        Log.logd(true, TAG, Integer.toString(getLife()));
+        
+        
+        
     }
 }

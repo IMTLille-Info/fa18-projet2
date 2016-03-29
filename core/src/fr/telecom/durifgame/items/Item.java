@@ -5,6 +5,7 @@ import fr.telecom.durifgame.items.itemDefinition.Armure;
 import fr.telecom.durifgame.items.itemDefinition.ItemType;
 import fr.telecom.durifgame.items.itemDefinition.Loot;
 import fr.telecom.durifgame.items.itemDefinition.Potion;
+import fr.telecom.durifgame.utils.Log;
 
 public class Item {
 	
@@ -37,6 +38,22 @@ public class Item {
 		this.loot = loot;
 	}
 	
+	public ItemType getType() {
+		return type;
+	}
+	public Potion getPotion() {
+		return potion;
+	}
+	public Arme getArme() {
+		return arme;
+	}
+	public Armure getArmure() {
+		return armure;
+	}
+	public Loot getLoot() {
+		return loot;
+	}
+	
 	public String toString() {
 		String chaine = "";
 		
@@ -50,12 +67,14 @@ public class Item {
 			case MANA: chaine = "potion de mana"; break;
 			case ENDURANCE: chaine = "potion d'endurance"; break;
 			}
+			break;
 			
 		case ARME:
 			switch(arme) {
 			case EPEE: chaine = "épée"; break;
 			case BATON: chaine = "baton"; break;
 			}
+			break;
 		
 		case ARMURE:
 			switch(armure) {
@@ -64,12 +83,14 @@ public class Item {
 			case JAMBIERES: chaine = "jambieres"; break;
 			case BOTTES: chaine = "bottes"; break;
 			}
+			break;
 		
 		case LOOT:
 			switch(loot) {
 			case POMME: chaine = "pomme"; break;
 			case POIRE: chaine = "poire"; break;
 			}
+			break;
 		}
 		
 		return chaine;
