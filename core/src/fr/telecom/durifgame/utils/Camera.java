@@ -1,4 +1,4 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,10 +9,6 @@ public class Camera {
 	
 	private OrthographicCamera camera;
 	
-	//----------------------------------------------//
-    //-Camera										//
-    //-Constructeur									//
-    //----------------------------------------------//
 	public Camera(){
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getHeight();
@@ -21,33 +17,23 @@ public class Camera {
         camera.setToOrtho(false,w,h);
         camera.update();
 	}
-	//-----------------------------------------------//
-    //-update										 //
-    //-----------------------------------------------//
+	
 	public void update(){
 		this.camera.update();
 	}
-	//-----------------------------------------------//
-    //-getCamera									 //
-    //-----------------------------------------------//
+	
 	public OrthographicCamera getCamera(){
 		return this.camera;
 	}
-	//-----------------------------------------------//
-    //-translate									 //
-    //-----------------------------------------------//
+	
 	protected void translate(int x, int y){
 		camera.translate(x,y);
 	}	
-	//-----------------------------------------------//
-    //-getWidth										 //
-    //-----------------------------------------------//
+	
 	public float getWidth(){
 		return w;
 	}
-	//-----------------------------------------------//
-    //-getHeight									 //
-    //-----------------------------------------------//
+	
 	public float getHeight(){
 		return h;
 	}

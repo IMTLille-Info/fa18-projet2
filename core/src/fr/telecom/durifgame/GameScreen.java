@@ -3,14 +3,16 @@ package fr.telecom.durifgame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import fr.telecom.durifgame.Camera;
 import fr.telecom.durifgame.DurifGame.GameState;
-import fr.telecom.durifgame.KeyListener;
-import fr.telecom.durifgame.Map;
-import fr.telecom.durifgame.Music;
 import fr.telecom.durifgame.player.Player;
 import fr.telecom.durifgame.scenes.Hud;
+import fr.telecom.durifgame.utils.Camera;
+import fr.telecom.durifgame.utils.KeyListener;
+import fr.telecom.durifgame.utils.Log;
+import fr.telecom.durifgame.utils.Map;
+import fr.telecom.durifgame.utils.Music;
 
 public class GameScreen implements Screen{
 
@@ -19,7 +21,7 @@ public class GameScreen implements Screen{
     private KeyListener kListener;
     private Player player;
     private Music music;
-    private Hud hud;
+    //private Hud hud;
     private Battle battle;
     private DurifGame game;
     
@@ -31,7 +33,7 @@ public class GameScreen implements Screen{
       player = new Player("resources/sprites/soldier.png",cam);
       music = new Music("resources/sound/musicGame.ogg");
       kListener = new KeyListener(cam, map, player,music);
-      hud = new Hud();
+      //hud = new Hud(new SpriteBatch(), player);
       battle = newBattle();
 	}
 	
@@ -55,7 +57,6 @@ public class GameScreen implements Screen{
 	        	music.stopMusic();
 	        	game.changeScreen(DurifGame.START_BATTLE);
 	        	battle = newBattle();
-	        	
 	        }
 	        	
 	        cam.update();

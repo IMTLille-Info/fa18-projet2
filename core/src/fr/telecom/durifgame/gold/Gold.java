@@ -1,4 +1,7 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.gold;
+
+import fr.telecom.durifgame.utils.Log;
+import fr.telecom.durifgame.utils.Position;
 
 public class Gold extends Position {
 
@@ -17,7 +20,6 @@ public class Gold extends Position {
 	public Gold(float posX, float posY) {
 		super(posX, posY);
 		double temp = Math.random();
-		//cost = Cost.GOLD;
 		if(temp <= 0.333333)
 			cost = Cost.GOLD;
 		else if (temp <= 0.666666)

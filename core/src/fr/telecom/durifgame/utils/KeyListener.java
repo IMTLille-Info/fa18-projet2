@@ -1,12 +1,13 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 
 import fr.telecom.durifgame.player.Player;
-import fr.telecom.durifgame.player.PlayerStates.*;
+import fr.telecom.durifgame.player.PlayerStates.Direction;
+import fr.telecom.durifgame.player.PlayerStates.State;
 
 public class KeyListener implements InputProcessor {
 
@@ -18,10 +19,7 @@ public class KeyListener implements InputProcessor {
 	private Player player;
 	private Music music;
 
-	// ----------------------------------------------//
-	// -KeyListener //
-	// -Constructeur //
-	// ----------------------------------------------//
+	
 	public KeyListener(Camera camera, Map map, Player player, Music music) {
 		Gdx.input.setInputProcessor(this);
 		this.cam = camera;
@@ -31,9 +29,6 @@ public class KeyListener implements InputProcessor {
 
 	}
 
-	// -----------------------------------------------//
-	// -keyDown //
-	// -----------------------------------------------//
 	@Override
 	public boolean keyDown(int keycode) {
 
@@ -59,9 +54,6 @@ public class KeyListener implements InputProcessor {
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -keyUp //
-	// -----------------------------------------------//
 	@Override
 	public boolean keyUp(int keycode) {
 
@@ -86,104 +78,63 @@ public class KeyListener implements InputProcessor {
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -keyTyped //
-	// -----------------------------------------------//
 	@Override
 	public boolean keyTyped(char character) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -touchDown //
-	// -----------------------------------------------//
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
 		return true;
 	}
 
-	// -----------------------------------------------//
-	// -touchUp //
-	// -----------------------------------------------//
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -touchDragged //
-	// -----------------------------------------------//
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -mouseMoved //
-	// -----------------------------------------------//
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -scrolled //
-	// -----------------------------------------------//
 	@Override
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	// -----------------------------------------------//
-	// -keyPressed //
-	// -----------------------------------------------//
 	public void keyPressed() {
 
 		int speed = player.getSpeed();
+		player.detectState(speed);
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			player.setX((player.getPos().x() - Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setX((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(-speed, 0);
 			player.setDir(Direction.LEFT);	
-			if(speed == Player.RUN){
-				player.setState(State.RUNNING);
-			}else if(speed == Player.WALK){
-				player.setState(State.WALKING);
-			}
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			player.setX((player.getPos().x() + Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setX((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(speed, 0);
 			player.setDir(Direction.RIGHT);
-			if(speed == Player.RUN){
-				player.setState(State.RUNNING);
-			}else if(speed == Player.WALK){
-				player.setState(State.WALKING);
-			}
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			player.setY((player.getPos().y() + Gdx.graphics.getDeltaTime() * (float) 1));
-			//Log.logd(true, TAG, "Gdx.graphics.getDeltaTime() * (float) 1)" + player.getPos().getPosX() + Gdx.graphics.getDeltaTime() * (float) 1);
+			player.setY((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, speed);
 			player.setDir(Direction.UP);
-			if(speed == Player.RUN){
-				player.setState(State.RUNNING);
-			}else if(speed == Player.WALK){
-				player.setState(State.WALKING);
-			}
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			player.setY((player.getPos().y() - Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setY((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, -speed);
 			player.setDir(Direction.DOWN);
-			if(speed == Player.RUN){
-				player.setState(State.RUNNING);
-			}else if(speed == Player.WALK){
-				player.setState(State.WALKING);
-			}
 		}
 	}
 

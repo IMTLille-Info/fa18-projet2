@@ -1,4 +1,4 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -8,36 +8,26 @@ public class Music {
 	protected Sound sound;
 	private boolean isPlay;
 	
-	//----------------------------------------------//
-    //-Music										//
-    //-Constructeur									//
-    //----------------------------------------------//
 	public Music(String path){
 		sound = Gdx.audio.newSound(Gdx.files.internal(path));
 		isPlay = false;
 	}
-	//-----------------------------------------------//
-    //-Animation									 //
-    //-----------------------------------------------//
-	protected void playMusic(){
+
+	public void playMusic(){
 		if(!isPlay){
 			sound.loop();
 			isPlay = true;
 		}
 	}
-	//-----------------------------------------------//
-    //-stopMusic									 //
-    //-----------------------------------------------//
-	protected void stopMusic(){
+
+	public void stopMusic(){
 		if(isPlay){
 			sound.stop();
 			isPlay = false;
 		}	
 	}
-	//-----------------------------------------------//
-    //-dispose										 //
-    //-----------------------------------------------//
-	protected void dispose(){
+
+	public void dispose(){
 		sound.dispose();
 	}
 }

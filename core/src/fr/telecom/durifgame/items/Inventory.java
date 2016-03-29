@@ -1,7 +1,6 @@
-package fr.telecom.durifgame.player;
+package fr.telecom.durifgame.items;
 
-import fr.telecom.durifgame.Log;
-import fr.telecom.durifgame.items.Item;
+import fr.telecom.durifgame.utils.Log;
 
 public class Inventory {
 
@@ -15,10 +14,21 @@ public class Inventory {
 		}
 	}
 	
-	public void debugInventory() {
+	public Item getItem(int i) {
+		return inventory[i];
+	}
+	
+	public void setItem(int i, Item item) {
+		inventory[i] = item;
+	}
+	
+	public String toString() {
+		String strInventory = "";
 		for(int i = 0; i < SIZE; i++) {
-			Log.logd(true, "Inventory", String.valueOf(i) + ":" + inventory[i].toString());
+			Log.logd(false, "Inventory", String.valueOf(i) + ":" + inventory[i].toString());
+			strInventory = ". " + inventory[i].toString() + " .";
 		}
+		return strInventory;
 	}
 	
 }

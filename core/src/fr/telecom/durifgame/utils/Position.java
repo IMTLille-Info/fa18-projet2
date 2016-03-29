@@ -1,4 +1,4 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.utils;
 
 public class Position {
 
@@ -10,7 +10,7 @@ public class Position {
 		this.y = y;
 	}
 	
-	public float x() {
+	public float getX() {
 		return x;
 	}
 
@@ -18,7 +18,7 @@ public class Position {
 		this.x = x;
 	}
 
-	public float y() {
+	public float getY() {
 		return y;
 	}
 

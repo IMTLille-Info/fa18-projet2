@@ -11,38 +11,45 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import fr.telecom.durifgame.items.Inventory;
+import fr.telecom.durifgame.player.Player;
+
 public class Hud {
 
-	private Viewport viewport;
-	private SpriteBatch spriteBatch;
 	public Stage stage;
+	private Viewport viewport;
 	
-	private Integer score;
+	private int vie;
+	private Inventory inventory;
+	private int score;
+	
+	private Label vieLabel;
+	private Label inventoryLabel;
 	private Label scoreLabel;
 	
-	public Hud() {
+	public Hud(SpriteBatch spriteBatch, Player player) {
 
-		score = 200;
+		vie = player.getLife();
+		inventory = player.getInventory();
+		score = player.getScore();
 		
 		viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
-		spriteBatch = new SpriteBatch();
 		stage = new Stage(viewport, spriteBatch);
 		
-		scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		
+
 		Table table = new Table();
-		table.top();
+		table.bottom();
 		table.setFillParent(true);
 		
-		table.add(scoreLabel).expandX();
+		vieLabel = new Label(String.format("%03d", vie), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		inventoryLabel = new Label(inventory.toString(), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+		
+		table.add(vieLabel).expandX().padBottom(10);
+		table.add(scoreLabel).expandX().padBottom(10);
 		
 		stage.addActor(table);
 		
-	}
-	
-	public void update() {
-		spriteBatch.begin();
-		spriteBatch.end();
 	}
 	
 }

@@ -3,6 +3,7 @@ package fr.telecom.durifgame;
 import com.badlogic.gdx.Game;
 
 import fr.telecom.durifgame.GameScreen;
+import fr.telecom.durifgame.utils.Log;
 
 
 
@@ -24,10 +25,6 @@ public class DurifGame extends Game {
     BattleScreen BattleScreen;
     
     
-	//----------------------------------------------//
-    //-create										//
-    //-Constructeur									//
-    //----------------------------------------------//
 	@Override
 	public void create () {
 	
