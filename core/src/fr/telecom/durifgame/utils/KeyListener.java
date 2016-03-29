@@ -62,18 +62,21 @@ public class KeyListener implements InputProcessor {
 		if (player.getDir() == Direction.DOWN && keycode == Input.Keys.DOWN ) {
 			player.setDir(Direction.NO_DIR_DOWN);
 			player.setState(State.STANDBY);
+			player.setSpeed(Player.STANDBY);
 
 		} else if (player.getDir() == Direction.UP && keycode == Input.Keys.UP) {
 			player.setDir(Direction.NO_DIR_UP);
 			player.setState(State.STANDBY);
+			player.setSpeed(Player.STANDBY);
 
 		} else if (player.getDir() == Direction.RIGHT && keycode == Input.Keys.RIGHT) {
 			player.setDir(Direction.NO_DIR_RIGHT);
 			player.setState(State.STANDBY);
-
+			player.setSpeed(Player.STANDBY);
 		} else if (player.getDir() == Direction.LEFT && keycode == Input.Keys.LEFT) {
 			player.setDir(Direction.NO_DIR_LEFT);
 			player.setState(State.STANDBY);
+			player.setSpeed(Player.STANDBY);
 		}
 		return false;
 	}

@@ -40,6 +40,7 @@ public class Player implements PlayerStates{
 	private int speed;
 	public static final int RUN = 5;
     public static final int WALK = 1;
+    public static final int STANDBY = 0; 
     private static final double DELTA = 0.5;
     
     int temp = 0;
@@ -58,7 +59,7 @@ public class Player implements PlayerStates{
         score = 200;
         life = 68;
         state = State.STANDBY;
-        speed = WALK;
+        speed = STANDBY;
         dir = Direction.NO_DIR_RIGHT;
         animation = new PlayerAnimation(state, dir,path);
         inventory = new Inventory();
@@ -75,6 +76,7 @@ public class Player implements PlayerStates{
      
         try{
         	Log.logd(DBG, TAG, "PWAR");
+        	Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
         	currentFrame = animation.getAnimation(dir,state).getKeyFrame(stateTime, true);  
         	Log.logd(DBG, TAG, "PAISH");
         }catch(Exception e){
@@ -199,7 +201,7 @@ public class Player implements PlayerStates{
     		state = State.RUNNING;
     	} else if (WALK == speed) {
     		state = State.WALKING;
-    	} else {
+    	} else if (STANDBY == speed) {
     		state = State.STANDBY;
     	}
     }
