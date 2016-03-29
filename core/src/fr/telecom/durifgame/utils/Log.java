@@ -1,4 +1,4 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.utils;
 
 public class Log {
 	

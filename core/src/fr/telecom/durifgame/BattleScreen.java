@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fr.telecom.durifgame.utils.Music;
+
 public class BattleScreen implements Screen {
 
 	Sprite sprite;
@@ -18,7 +20,6 @@ public class BattleScreen implements Screen {
 	Texture monsterTexture;
 	Texture texture;
 	SpriteBatch spriteBatch;
-	SpriteBatch batch;
 	BitmapFont font;
 	DurifGame game;
 	//Battle battle;

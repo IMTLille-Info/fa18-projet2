@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.telecom.durifgame.utils.Log;
+
 
 
 public class PlayerAnimation implements PlayerStates {
@@ -59,7 +61,7 @@ public class PlayerAnimation implements PlayerStates {
     //-----------------------------------------------//
 	public Animation getAnimation(Direction dir,State state){
 		
-		//Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
+		Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
 		switch(state){
 		case WALKING:
 			switch (dir) {

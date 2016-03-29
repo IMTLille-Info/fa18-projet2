@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fr.telecom.durifgame.scenes.Hud;
+
 public class MainScreen  implements Screen{
 	
 	DurifGame durifGame;
@@ -17,7 +19,6 @@ public class MainScreen  implements Screen{
 	Sprite sprite;
 	Texture texture;
 	SpriteBatch spriteBatch;
-	SpriteBatch batch;
 	BitmapFont font;
 	
 	
@@ -34,7 +35,6 @@ public class MainScreen  implements Screen{
 		texture = new Texture(Gdx.files.internal("resources/images/durifMain.jpg"));
 		sprite = new Sprite(texture);
 		sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
 	}
 
 	@Override
