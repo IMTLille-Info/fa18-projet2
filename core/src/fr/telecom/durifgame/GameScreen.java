@@ -32,7 +32,7 @@ public class GameScreen implements Screen{
 	public GameScreen(DurifGame game) {
 	  this.game = game;
 	  cam = new Camera();
-      map = new Map("resources/map/exemple.tmx");
+      map = new Map("resources/map/durifmap.tmx");
       player = new Player("resources/sprites/soldier.png",cam);
       music = new Music("resources/sound/musicGame.ogg");
       kListener = new KeyListener(cam, map, player,music);

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
 import fr.telecom.durifgame.player.Player;
 import fr.telecom.durifgame.player.PlayerStates.Direction;
@@ -117,30 +119,65 @@ public class KeyListener implements InputProcessor {
 		int speed = player.getSpeed();
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			player.setX((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
-			cam.translate(-speed, 0);
-			player.setDir(Direction.LEFT);	
-			player.detectState(speed);
+
+			if(!isCellBlocked(player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1, player.getPos().getY())){
+				player.setX((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
+				cam.translate(-speed, 0);
+				player.setDir(Direction.LEFT);	
+				player.detectState(speed);
+			}else{
+				player.setDir(Direction.NO_DIR_LEFT);
+				player.detectState(speed);
+			}
+
 
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			player.setX((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
-			cam.translate(speed, 0);
-			player.setDir(Direction.RIGHT);
-			player.detectState(speed);
+			if(!isCellBlocked(player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1, player.getPos().getY())){
+				player.setX((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
+				cam.translate(speed, 0);
+				player.setDir(Direction.RIGHT);
+				player.detectState(speed);
+			}else{
+				player.setDir(Direction.NO_DIR_RIGHT);
+				player.detectState(speed);
+			}
 
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			player.setY((player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1));
-			cam.translate(0, speed);
-			player.setDir(Direction.UP);
-			player.detectState(speed);
+			if(!isCellBlocked(player.getPos().getX(), player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1)){
+				player.setY((player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1));
+				cam.translate(0, speed);
+				player.setDir(Direction.UP);
+				player.detectState(speed);
+			}
 
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			player.setY((player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1));
-			cam.translate(0, -speed);
-			player.setDir(Direction.DOWN);
-			player.detectState(speed);
+			if(!isCellBlocked(player.getPos().getX(), player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1)){
+				player.setY((player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1));
+				cam.translate(0, -speed);
+				player.setDir(Direction.DOWN);
+				player.detectState(speed);
+			}
 
 		}
+		
+
+	}
+	
+	private boolean isCellBlocked(float x, float y){
+		
+		Cell cell = null;
+		TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(5);
+		try{
+			cell = collisionLayer.getCell((int)(x / collisionLayer.getTileWidth()),(int)(y / collisionLayer.getTileHeight()));
+		}catch(Exception e ){
+			e.printStackTrace();
+		}
+		if(cell != null && cell.getTile() != null){
+			if(cell.getTile().getProperties().containsKey("blocked")){
+				return true;
+			}
+		}
+		return false;
 	}
 
 
