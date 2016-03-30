@@ -167,6 +167,7 @@ public class KeyListener implements InputProcessor {
 		
 		Cell cell = null;
 		TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(5);
+		
 		try{
 			cell = collisionLayer.getCell((int)(x / collisionLayer.getTileWidth()),(int)(y / collisionLayer.getTileHeight()));
 		}catch(Exception e ){
