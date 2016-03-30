@@ -1,4 +1,4 @@
-package fr.telecom.durifgame;
+package fr.telecom.durifgame.gold;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import fr.telecom.durifgame.player.Player;
 import fr.telecom.durifgame.utils.Log;
 
-public class Sonar {
+public class GoldDetector {
 	
 	private final static boolean DBG = true;
 	private final static String TAG = Player.class.getSimpleName();
@@ -24,7 +24,7 @@ public class Sonar {
 	
 	private int nbBoucle = 0;
 
-	public Sonar() {
+	public GoldDetector() {
 		bip = Gdx.audio.newSound(Gdx.files.internal("resources/sound/bip1.wav"));
 		distance = FAR;
 	}
@@ -51,7 +51,7 @@ public class Sonar {
 	
 	private void checkDif(){
 		//LOG A ACTIV2 POUR CHERCHER OR
-		//Log.logd(DBG, TAG , "X = "+difX+" Y = "+difY);
+		Log.logd(DBG, TAG , "X = "+difX+" Y = "+difY);
 		if(difX > 5 || difY > 5){
 			distance = FAR;
 			//Log.logd(DBG, TAG, "sup 5");

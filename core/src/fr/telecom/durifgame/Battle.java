@@ -5,7 +5,7 @@ import fr.telecom.durifgame.utils.Position;
 
 public class Battle extends Position{
 	
-	private final static boolean DBG = true;
+	private final static boolean DBG = false;
 	private final static String TAG = Battle.class.getSimpleName();
 	
 	
