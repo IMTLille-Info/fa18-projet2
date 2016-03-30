@@ -20,9 +20,9 @@ public class GoldGenerator extends Position {
 	public GoldGenerator(float posX, float posY) {
 		super(posX, posY);
 		double temp = Math.random();
-		if(temp <= 0.333333)
+		if(temp <= 0.200000)
 			cost = Cost.GOLD;
-		else if (temp <= 0.666666)
+		else if (temp <= 0.555555)
 			cost = Cost.SILVER;
 		else
 			cost = Cost.BRONZE;

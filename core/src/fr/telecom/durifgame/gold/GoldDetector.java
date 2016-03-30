@@ -3,13 +3,12 @@ package fr.telecom.durifgame.gold;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
-import fr.telecom.durifgame.player.Player;
 import fr.telecom.durifgame.utils.Log;
 
 public class GoldDetector {
 	
 	private final static boolean DBG = true;
-	private final static String TAG = Player.class.getSimpleName();
+	private final static String TAG = GoldDetector.class.getSimpleName();
 	
 	private Boolean haveSonar;
 	

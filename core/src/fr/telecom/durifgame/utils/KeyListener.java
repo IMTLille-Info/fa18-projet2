@@ -120,7 +120,7 @@ public class KeyListener implements InputProcessor {
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
 
-			if(!(isCellBlocked(player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1,
+			if((isCellBlocked(player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1,
 					player.getPos().getY()))){
 				player.setX((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(-speed, 0);
@@ -133,20 +133,20 @@ public class KeyListener implements InputProcessor {
 
 
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			if(!(isCellBlocked(player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1
+			if((isCellBlocked(player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1
 					, player.getPos().getY()))){
 				player.setX((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(speed, 0);
 				player.setDir(Direction.RIGHT);
 				player.detectState(speed);
 			}else{
-				Log.logd(true, TAG, "zizi");
+				//Log.logd(true, TAG, "false");
 				player.setDir(Direction.RIGHT);
 				player.detectState(speed);
 			}
 
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			if(!(isCellBlocked(player.getPos().getX(),
+			if((isCellBlocked(player.getPos().getX(),
 					player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1))){
 				player.setY((player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(0, speed);
@@ -158,7 +158,7 @@ public class KeyListener implements InputProcessor {
 			}
 
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			if(!(isCellBlocked(player.getPos().getX(),
+			if((isCellBlocked(player.getPos().getX(),
 					player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1))){
 				player.setY((player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(0, -speed);
@@ -185,10 +185,10 @@ public class KeyListener implements InputProcessor {
 			e.printStackTrace();
 		}
 		if(cell != null && cell.getTile() != null){
-			Log.logd(true, TAG, "chate "+cell.getTile().getProperties().getKeys().next());
-			Log.logd(true, TAG, "poire "+cell.getTile().getProperties().containsKey("blocked"));
+			//Log.logd(true, TAG, "properties "+cell.getTile().getProperties().getKeys().next());
+			//Log.logd(true, TAG, "containsKey "+cell.getTile().getProperties().containsKey("blocked"));
 			if(cell.getTile().getProperties().containsKey("blocked")){
-				Log.logd(true, TAG, "pomme");
+				//Log.logd(true, TAG, "rentré dans if");
 				return true;
 			}
 		}
