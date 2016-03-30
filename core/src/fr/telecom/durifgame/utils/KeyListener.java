@@ -62,21 +62,16 @@ public class KeyListener implements InputProcessor {
 		if (player.getDir() == Direction.DOWN && keycode == Input.Keys.DOWN ) {
 			player.setDir(Direction.NO_DIR_DOWN);
 			player.setState(State.STANDBY);
-			player.setSpeed(Player.STANDBY);
-
 		} else if (player.getDir() == Direction.UP && keycode == Input.Keys.UP) {
 			player.setDir(Direction.NO_DIR_UP);
 			player.setState(State.STANDBY);
-			player.setSpeed(Player.STANDBY);
-
 		} else if (player.getDir() == Direction.RIGHT && keycode == Input.Keys.RIGHT) {
 			player.setDir(Direction.NO_DIR_RIGHT);
 			player.setState(State.STANDBY);
-			player.setSpeed(Player.STANDBY);
+			//player.setSpeed(Player.STANDBY);
 		} else if (player.getDir() == Direction.LEFT && keycode == Input.Keys.LEFT) {
 			player.setDir(Direction.NO_DIR_LEFT);
 			player.setState(State.STANDBY);
-			player.setSpeed(Player.STANDBY);
 		}
 		return false;
 	}
@@ -120,24 +115,31 @@ public class KeyListener implements InputProcessor {
 	public void keyPressed() {
 
 		int speed = player.getSpeed();
-		player.detectState(speed);
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.setX((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(-speed, 0);
 			player.setDir(Direction.LEFT);	
+			player.detectState(speed);
+
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			player.setX((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(speed, 0);
 			player.setDir(Direction.RIGHT);
+			player.detectState(speed);
+
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
 			player.setY((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, speed);
 			player.setDir(Direction.UP);
+			player.detectState(speed);
+
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
 			player.setY((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, -speed);
 			player.setDir(Direction.DOWN);
+			player.detectState(speed);
+
 		}
 	}
 

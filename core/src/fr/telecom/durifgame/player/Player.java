@@ -46,7 +46,6 @@ public class Player implements PlayerStates{
 	private int speed;
 	public static final int RUN = 5;
     public static final int WALK = 1;
-    public static final int STANDBY = 0; 
     private static final double DELTA = 0.5;
     
     int temp = 0;
@@ -65,7 +64,7 @@ public class Player implements PlayerStates{
         score = 200;
         life = 100;
         state = State.STANDBY;
-        speed = STANDBY;
+        speed = WALK;
         dir = Direction.NO_DIR_RIGHT;
         animation = new PlayerAnimation(state, dir,path);
         
@@ -209,8 +208,6 @@ public class Player implements PlayerStates{
     		state = State.RUNNING;
     	} else if (WALK == speed) {
     		state = State.WALKING;
-    	} else if (STANDBY == speed) {
-    		state = State.STANDBY;
     	}
     }
     
