@@ -16,6 +16,9 @@ import fr.telecom.durifgame.utils.Music;
 
 public class GameScreen implements Screen{
 
+	private final static boolean DBG = false;
+	private final static String TAG = GameScreen.class.getSimpleName();
+	
 	private Map map ;
     private Camera cam;
     private KeyListener kListener;
@@ -75,7 +78,7 @@ public class GameScreen implements Screen{
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		Log.logd(true, "gamesreen", "pause");
+		Log.logd(DBG, "gamesreen", "pause");
 		music.stopMusic();
 		game.gameState = GameState.PAUSE;
 		
@@ -83,7 +86,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resume() {
-		Log.logd(true, "gamesreen", "resume");
+		Log.logd(true, TAG, "resume");
 		music.playMusic();
 		game.gameState = GameState.PLAY;
 		

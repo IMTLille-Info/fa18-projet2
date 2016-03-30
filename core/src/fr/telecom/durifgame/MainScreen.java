@@ -10,8 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import fr.telecom.durifgame.scenes.Hud;
-
 public class MainScreen  implements Screen{
 	
 	DurifGame durifGame;

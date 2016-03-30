@@ -129,13 +129,13 @@ public class KeyListener implements InputProcessor {
 			player.detectState(speed);
 
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			player.setY((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setY((player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, speed);
 			player.setDir(Direction.UP);
 			player.detectState(speed);
 
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			player.setY((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
+			player.setY((player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1));
 			cam.translate(0, -speed);
 			player.setDir(Direction.DOWN);
 			player.detectState(speed);

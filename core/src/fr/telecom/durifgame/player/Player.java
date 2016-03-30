@@ -20,7 +20,7 @@ import fr.telecom.durifgame.utils.Position;
 
 public class Player implements PlayerStates{
 	
-	private final static boolean DBG = false;
+	private final static boolean DBG = true;
 	private final static String TAG = Player.class.getSimpleName();
 
 
@@ -74,14 +74,14 @@ public class Player implements PlayerStates{
         newGold();
         sonar = new Sonar();
         money = 0;
-        Log.logd(true, TAG, "GOLD    X = "+gold.getX()+" Y = "+gold.getY());
+        Log.logd(DBG,TAG, "GOLD    X = "+gold.getX()+" Y = "+gold.getY());
 	}
 
 	public void displayPlayer(){
         stateTime += Gdx.graphics.getDeltaTime();
      
         try{
-        	Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
+        	//Log.logd(DBG, TAG, "dir = "+dir.name()+" state = "+state.name());
         	currentFrame = animation.getAnimation(dir,state).getKeyFrame(stateTime, true); 
         }catch(Exception e){
         	e.printStackTrace();
@@ -102,7 +102,7 @@ public class Player implements PlayerStates{
 	}
 	
 	public Position getPos() {
-		//Log.logd(true, TAG,"X = "+pos.getPosX()+" Y = "+pos.getPosY());
+		//Log.logd(DBG, TAG,"X = "+pos.getPosX()+" Y = "+pos.getPosY());
 		return pos;
 	}
 	
@@ -141,9 +141,9 @@ public class Player implements PlayerStates{
 	}
     
     public void setX(float x){
-    	//Log.logd(true, TAG, "x "+x);
+    	//Log.logd(DBG, TAG, "x "+x);
     	pos.setPosX(x);
-    	//Log.logd(true, TAG, "x after "+pos.getPosX());
+    	//Log.logd(DBG, TAG, "x after "+pos.getPosX());
     }
     
     public void setY(float y){
@@ -175,7 +175,7 @@ public class Player implements PlayerStates{
     
     public boolean checkPositionGold(){
     	
-    	//Log.logd(true, TAG, " GOLD ::X = "+gold.getPosX()+" Y = "+gold.getPosY());
+    	//Log.logd(DBG, TAG, " GOLD ::X = "+gold.getPosX()+" Y = "+gold.getPosY());
     	
     	float x = Math.abs(gold.getX()-pos.getX());
     	float y = Math.abs(gold.getY()-pos.getY());
@@ -183,7 +183,7 @@ public class Player implements PlayerStates{
     	if(sonar != null){
     		sonar.setDif(x, y);
     	}
-    	//Log.logd(true, TAG, "checkPosition :: x "+x+" y "+y);
+    	//Log.logd(DBG, TAG, "checkPosition :: x "+x+" y "+y);
     	
     	if(x<=DELTA){
     		if(y<=DELTA){
@@ -212,7 +212,7 @@ public class Player implements PlayerStates{
     }
     
     public void testInventory() {
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         
         Item epee = new Item(ItemType.ARME, Arme.EPEE);
         Item potionVie = new Item(ItemType.POTION, Potion.VIE);
@@ -220,40 +220,40 @@ public class Player implements PlayerStates{
         Item pomme = new Item(ItemType.LOOT, Loot.POMME);
         
         inventory.addItem(epee);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         inventory.addItem(potionVie);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         inventory.addItem(plastron);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         inventory.addItem(epee);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         inventory.addItem(potionVie);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         inventory.addItem(epee);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         inventory.addItem(potionVie);
-        Log.logd(true, TAG, inventory.toString());
-        Log.logd(true, TAG, "---------------");
+        Log.logd(DBG, TAG, inventory.toString());
+        Log.logd(DBG, TAG, "---------------");
         
-        Log.logd(true, TAG, inventory.getItem(3).toString());
-        Log.logd(true, TAG, "---------------");
+        Log.logd(DBG, TAG, inventory.getItem(3).toString());
+        Log.logd(DBG, TAG, "---------------");
         
         inventory.removeItem(3);
-        Log.logd(true, TAG, inventory.toString());
-        Log.logd(true, TAG, "---------------");
+        Log.logd(DBG, TAG, inventory.toString());
+        Log.logd(DBG, TAG, "---------------");
         
         inventory.addItem(pomme);
-        Log.logd(true, TAG, inventory.toString());
+        Log.logd(DBG, TAG, inventory.toString());
         Log.logd(true, TAG, "---------------");
         
         life = 68;
-        Log.logd(true, TAG, Integer.toString(getLife()));
+        Log.logd(DBG, TAG, Integer.toString(getLife()));
         inventory.useItem(this, 5);
-        Log.logd(true, TAG, inventory.toString());
-        Log.logd(true, TAG, Integer.toString(getLife()));
+        Log.logd(DBG, TAG, inventory.toString());
+        Log.logd(DBG, TAG, Integer.toString(getLife()));
         inventory.useItem(this, 3);
-        Log.logd(true, TAG, inventory.toString());
-        Log.logd(true, TAG, Integer.toString(getLife()));
+        Log.logd(DBG, TAG, inventory.toString());
+        Log.logd(DBG, TAG, Integer.toString(getLife()));
         
         
         

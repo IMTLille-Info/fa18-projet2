@@ -3,7 +3,13 @@ package fr.telecom.durifgame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
+import fr.telecom.durifgame.player.Player;
+import fr.telecom.durifgame.utils.Log;
+
 public class Sonar {
+	
+	private final static boolean DBG = true;
+	private final static String TAG = Player.class.getSimpleName();
 	
 	private Boolean haveSonar;
 	
@@ -44,20 +50,20 @@ public class Sonar {
 	}
 	
 	private void checkDif(){
-		
-		//Log.logd(true, "sonar", "X = "+difX+" Y = "+difY);
+		//LOG A ACTIV2 POUR CHERCHER OR
+		//Log.logd(DBG, TAG , "X = "+difX+" Y = "+difY);
 		if(difX > 5 || difY > 5){
 			distance = FAR;
-			//Log.logd(true, "sonar", "sup 5");
+			//Log.logd(DBG, TAG, "sup 5");
 			playSonard(distance);
 		}else if (difX > 1 || difY > 1){
 			distance = MIDDLE;
-			//Log.logd(true, "sonar", "sup 1");
+			//Log.logd(DBG, TAG, "sup 1");
 			playSonard(distance);
 		}else if(difX <= 1 || difY <= 1){
 			distance = CLOSE;
 			playSonard(distance);
-			//Log.logd(true, "sonar", "else");
+			//Log.logd(DBG, TAG, "else");
 		}
 		
 		
