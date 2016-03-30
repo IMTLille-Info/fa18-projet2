@@ -11,7 +11,7 @@ import fr.telecom.durifgame.utils.Log;
 
 public class PlayerAnimation implements PlayerStates {
 	
-	private final static boolean DBG = true;
+	private final static boolean DBG = false;
 	private final static String TAG = PlayerAnimation.class.getSimpleName();
 	
 	private TextureRegion[]	walkUpAnim;
