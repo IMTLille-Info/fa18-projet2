@@ -24,7 +24,7 @@ public class GameScreen implements Screen{
     private KeyListener kListener;
     private Player player;
     private Music music;
-    //private Hud hud;
+    private Hud hud;
     private Battle battle;
     private DurifGame game;
     
@@ -36,7 +36,7 @@ public class GameScreen implements Screen{
       player = new Player("resources/sprites/soldier.png",cam);
       music = new Music("resources/sound/musicGame.ogg");
       kListener = new KeyListener(cam, map, player,music);
-      //hud = new Hud(new SpriteBatch(), player);
+      hud = new Hud(player);
       battle = newBattle();
 	}
 	
@@ -66,6 +66,7 @@ public class GameScreen implements Screen{
 	        map.setView(cam);
 	        map.render();
 	        player.displayPlayer();
+	        hud.displayHud();
 		}
 	}
 
