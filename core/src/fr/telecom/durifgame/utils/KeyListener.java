@@ -42,9 +42,9 @@ public class KeyListener implements InputProcessor {
 			player.setSpeed(Player.WALK);
 			//Log.logd(DBG, TAG, "keyDown : WALKING");
 		}
-		if (keycode == Input.Keys.NUM_1)
+		if (keycode == Input.Keys.B)
 			map.getLayers().get(0).setVisible(!map.getLayers().get(0).isVisible());
-		if (keycode == Input.Keys.NUM_2)
+		if (keycode == Input.Keys.N)
 			map.getLayers().get(1).setVisible(!map.getLayers().get(1).isVisible());
 
 		if (keycode == Input.Keys.ESCAPE)
@@ -167,7 +167,6 @@ public class KeyListener implements InputProcessor {
 		
 		Cell cell = null;
 		TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(5);
-		
 		try{
 			cell = collisionLayer.getCell((int)(x / collisionLayer.getTileWidth()),(int)(y / collisionLayer.getTileHeight()));
 		}catch(Exception e ){
