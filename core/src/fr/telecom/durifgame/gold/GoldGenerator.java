@@ -3,7 +3,7 @@ package fr.telecom.durifgame.gold;
 import fr.telecom.durifgame.utils.Log;
 import fr.telecom.durifgame.utils.Position;
 
-public class Gold extends Position {
+public class GoldGenerator extends Position {
 
 	private enum Cost{GOLD,SILVER,BRONZE}
 	
@@ -15,9 +15,9 @@ public class Gold extends Position {
 	private Cost cost;
 	
 	private final static boolean DBG = true;
-	private final static String TAG = Gold.class.getSimpleName();
+	private final static String TAG = GoldGenerator.class.getSimpleName();
 	
-	public Gold(float posX, float posY) {
+	public GoldGenerator(float posX, float posY) {
 		super(posX, posY);
 		double temp = Math.random();
 		if(temp <= 0.333333)

@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import fr.telecom.durifgame.Sonar;
-import fr.telecom.durifgame.gold.Gold;
+import fr.telecom.durifgame.gold.GoldGenerator;
+import fr.telecom.durifgame.gold.GoldDetector;
 import fr.telecom.durifgame.items.Inventory;
 import fr.telecom.durifgame.items.Item;
 import fr.telecom.durifgame.items.itemDefinition.Arme;
@@ -29,9 +29,11 @@ public class Player implements PlayerStates{
 	private Direction dir;
 	private PlayerAnimation animation;
 	private Sprite sprite;
-	private Sonar sonar;
-           
+
     private int money;
+	private GoldDetector sonar;
+	private GoldGenerator gold;
+    public Inventory inventory;
 	
     private SpriteBatch spriteBatch;            
     private TextureRegion currentFrame;           
@@ -50,8 +52,7 @@ public class Player implements PlayerStates{
     
     int temp = 0;
     
-    public Inventory inventory;
-	Gold gold;
+
     
     
 	public Player(String path,Camera camera) {
@@ -72,7 +73,7 @@ public class Player implements PlayerStates{
         testInventory();
         
         newGold();
-        sonar = new Sonar();
+        sonar = new GoldDetector();
         money = 0;
         Log.logd(DBG,TAG, "GOLD    X = "+gold.getX()+" Y = "+gold.getY());
 	}
@@ -200,7 +201,7 @@ public class Player implements PlayerStates{
     }
     
     public void newGold(){
-    	gold = new Gold((float)(Math.random()*10), (float)(Math.random()*10));
+    	gold = new GoldGenerator((float)(Math.random()*10), (float)(Math.random()*10));
     }
     
     public void detectState(int speed) {
