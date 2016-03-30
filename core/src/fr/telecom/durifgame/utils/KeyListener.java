@@ -120,40 +120,51 @@ public class KeyListener implements InputProcessor {
 		
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
 
-			if(!isCellBlocked(player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1, player.getPos().getY())){
+			if(!(isCellBlocked(player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1,
+					player.getPos().getY()))){
 				player.setX((player.getPos().getX() - Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(-speed, 0);
 				player.setDir(Direction.LEFT);	
 				player.detectState(speed);
 			}else{
-				player.setDir(Direction.NO_DIR_LEFT);
+				player.setDir(Direction.LEFT);
 				player.detectState(speed);
 			}
 
 
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			if(!isCellBlocked(player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1, player.getPos().getY())){
+			if(!(isCellBlocked(player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1
+					, player.getPos().getY()))){
 				player.setX((player.getPos().getX() + Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(speed, 0);
 				player.setDir(Direction.RIGHT);
 				player.detectState(speed);
 			}else{
-				player.setDir(Direction.NO_DIR_RIGHT);
+				Log.logd(true, TAG, "zizi");
+				player.setDir(Direction.RIGHT);
 				player.detectState(speed);
 			}
 
 		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			if(!isCellBlocked(player.getPos().getX(), player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1)){
+			if(!(isCellBlocked(player.getPos().getX(),
+					player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1))){
 				player.setY((player.getPos().getY() + Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(0, speed);
+				player.setDir(Direction.UP);
+				player.detectState(speed);
+			}else{
 				player.setDir(Direction.UP);
 				player.detectState(speed);
 			}
 
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			if(!isCellBlocked(player.getPos().getX(), player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1)){
+			if(!(isCellBlocked(player.getPos().getX(),
+					player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1))){
 				player.setY((player.getPos().getY() - Gdx.graphics.getDeltaTime() * (float) 1));
 				cam.translate(0, -speed);
+				player.setDir(Direction.DOWN);
+				player.detectState(speed);
+			}else{
 				player.setDir(Direction.DOWN);
 				player.detectState(speed);
 			}
@@ -169,12 +180,16 @@ public class KeyListener implements InputProcessor {
 		TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(5);
 		
 		try{
-			cell = collisionLayer.getCell((int)(x / collisionLayer.getTileWidth()),(int)(y / collisionLayer.getTileHeight()));
+			cell = collisionLayer.getCell((int)(x / collisionLayer.getTileWidth()),
+					(int)(y / collisionLayer.getTileHeight()));
 		}catch(Exception e ){
 			e.printStackTrace();
 		}
 		if(cell != null && cell.getTile() != null){
+			Log.logd(true, TAG, "chate "+cell.getTile().getProperties().getKeys().next());
+			Log.logd(true, TAG, "poire "+cell.getTile().getProperties().containsKey("blocked"));
 			if(cell.getTile().getProperties().containsKey("blocked")){
+				Log.logd(true, TAG, "pomme");
 				return true;
 			}
 		}
